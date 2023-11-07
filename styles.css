@@ -1,0 +1,63 @@
+body {
+  background: rgb(255, 255, 122);
+  background: radial-gradient(
+    at left bottom,
+    rgba(255, 255, 122, 1) 0%,
+    rgba(230, 53, 147, 1) 50%,
+    rgba(120, 54, 130, 1) 100%
+  );
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  color: white;
+}
+
+.landing-page {
+  height: 100vh;
+  border: 2px solid purple;
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
+  justify-content: center;
+  padding-left: 7vw;
+}
+
+.logo {
+  height: auto;
+  width: 45vw;
+}
+
+.landing-page h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 6vw;
+  line-height: 10vh;
+}
+
+.landing-page p {
+  font-size: 1.25vw;
+  font-weight: 200;
+  margin: 20px 0 15px 0;
+}
+
+.level-btn {
+  border: none;
+  border-radius: 40px;
+  width: 15vw;
+  aspect-ratio: 5 / 1;
+  color: white;
+  font-weight: 800;
+  font-size: larger;
+  background: rgb(124, 55, 131);
+  background: linear-gradient(45deg, rgba(124, 55, 131, 1) 0%, rgba(231, 58, 147, 1) 100%);
+  box-shadow: 3px 6px 7px rgba(0, 0, 0, 0.25);
+  margin-right: 30px;
+  cursor: pointer;
+}
