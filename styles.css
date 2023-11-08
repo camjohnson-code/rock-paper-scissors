@@ -69,7 +69,8 @@ header ul {
 .landing-page p {
   font-size: 1.25vw;
   font-weight: 200;
-  margin: 20px 0 15px 0;
+  margin: 20px 0 20px 0;
+  width: 45vw;
 }
 
 .btn {
