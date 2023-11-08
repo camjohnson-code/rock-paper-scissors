@@ -13,26 +13,193 @@
     <title>🕹️ Rock Paper Scissors</title>
   </head>
   <body>
-    <section class="landing-page">
-      <container class="info">
-        <h1>ROCK</h1>
-        <h1>PAPER</h1>
-        <h1>SCISSORS</h1>
-        <p>
-          Welcome to the ultimate Rock, Paper, Scissors showdown! Get ready to unleash your
-          strategic prowess and quick thinking in this classic game of wits. Will you crush your
-          opponents with the mighty rock, outsmart them with the cunning paper, or leave them in
-          shambles with the swift scissors? The choice is yours, so jump in, challenge your friends,
-          and let the epic battles begin! May the best decision-maker emerge victorious!
-        </p>
+    <header class="">
+      <p>HOME</p>
+      <ul class="links">
+        <li>EASY MODE</li>
+        <li>HARD MODE</li>
+      </ul>
+    </header>
 
-        <container class="buttons-container">
-          <button class="level-btn">EASY MODE</button>
-          <button class="level-btn">HARD MODE</button>
+    <main>
+      <section class="landing-page hidden">
+        <container class="info">
+          <h1>ROCK</h1>
+          <h1>PAPER</h1>
+          <h1>SCISSORS</h1>
+          <p>
+            Welcome to the ultimate Rock, Paper, Scissors showdown! Get ready to unleash your
+            strategic prowess and quick thinking in this classic game of wits. Will you crush your
+            opponents with the mighty rock, outsmart them with the cunning paper, or leave them in
+            shambles with the swift scissors? The choice is yours, so jump in, challenge your
+            friends, and let the epic battles begin! May the best decision-maker emerge victorious!
+          </p>
+
+          <container class="buttons-container">
+            <button class="btn">EASY MODE</button>
+            <button class="btn">HARD MODE</button>
+          </container>
         </container>
-      </container>
-      <img src="assets/logo.png" alt="Rock Paper Scissors logo" class="logo" />
-    </section>
+        <img src="assets/logo.png" alt="Rock Paper Scissors logo" class="logo" />
+      </section>
+
+      <section class="easy-mode">
+        <section class="scoreboard">
+          <container class="scoreboard-player">
+            <h2>PLAYER</h2>
+            <p>0</p>
+          </container>
+
+          <container class="scoreboard-player">
+            <h2>COMPUTER</h2>
+            <p>0</p>
+          </container>
+        </section>
+
+        <section class="options">
+          <container class="rock">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="8em"
+              viewBox="0 0 448 512"
+              fill="currentColor"
+            >
+              <path
+                d="M144 0C117.5 0 96 21.5 96 48V96v28.5V176c0 8.8-7.2 16-16 16s-16-7.2-16-16V149.3l-9 7.5C40.4 169 32 187 32 206V244c0 38 16.9 74 46.1 98.3L128 384v96c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V374.7c46.9-19 80-65 80-118.7V176 160 144c0-26.5-21.5-48-48-48c-12.4 0-23.6 4.7-32.1 12.3C350 83.5 329.3 64 304 64c-12.4 0-23.6 4.7-32.1 12.3C270 51.5 249.3 32 224 32c-12.4 0-23.6 4.7-32.1 12.3C190 19.5 169.3 0 144 0z"
+              />
+            </svg>
+
+            <h2 class="choice">ROCK</h2>
+          </container>
+          <container class="paper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="9em"
+              viewBox="0 0 512 512"
+              fill="currentColor"
+            >
+              <path
+                d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V336c0 1.5 0 3.1 .1 4.6L67.6 283c-16-15.2-41.3-14.6-56.6 1.4s-14.6 41.3 1.4 56.6L124.8 448c43.1 41.1 100.4 64 160 64H304c97.2 0 176-78.8 176-176V128c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V32z"
+              />
+            </svg>
+            <h2 class="choice">PAPER</h2>
+          </container>
+          <container class="scissors">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="9em"
+              viewBox="0 0 512 512"
+              fill="currentColor"
+            >
+              <path
+                d="M40 208c-22.1 0-40 17.9-40 40s17.9 40 40 40l180.2 0c-7.6 8.5-12.2 19.7-12.2 32c0 25.3 19.5 46 44.3 47.9c-7.7 8.5-12.3 19.8-12.3 32.1c0 26.5 21.5 48 48 48l32 0 64 0c70.7 0 128-57.3 128-128l0-113.1c0-40.2-16-78.8-44.4-107.3C444.8 76.8 413.9 64 381.7 64L336 64c-21.3 0-39.3 13.9-45.6 33.1l74.5 23.7c8.4 2.7 13.1 11.7 10.4 20.1s-11.7 13.1-20.1 10.4L288 129.9l0 .1L84 65.8C62.9 59.2 40.5 70.9 33.8 92s5.1 43.5 26.2 50.2L269.5 208 40 208z"
+              />
+            </svg>
+            <p class="choice">SCISSORS</p>
+          </container>
+        </section>
+
+        <button class="btn play-btn">LET'S GO!</button>
+      </section>
+
+      <section class="hard-mode hidden">
+        <section class="scoreboard">
+          <container class="scoreboard-player">
+            <h2>PLAYER</h2>
+            <p>0</p>
+          </container>
+
+          <container class="scoreboard-player">
+            <h2>COMPUTER</h2>
+            <p>0</p>
+          </container>
+        </section>
+
+        <section class="options">
+          <container class="rock">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="8em"
+              viewBox="0 0 448 512"
+              fill="currentColor"
+            >
+              <path
+                d="M144 0C117.5 0 96 21.5 96 48V96v28.5V176c0 8.8-7.2 16-16 16s-16-7.2-16-16V149.3l-9 7.5C40.4 169 32 187 32 206V244c0 38 16.9 74 46.1 98.3L128 384v96c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V374.7c46.9-19 80-65 80-118.7V176 160 144c0-26.5-21.5-48-48-48c-12.4 0-23.6 4.7-32.1 12.3C350 83.5 329.3 64 304 64c-12.4 0-23.6 4.7-32.1 12.3C270 51.5 249.3 32 224 32c-12.4 0-23.6 4.7-32.1 12.3C190 19.5 169.3 0 144 0z"
+              />
+            </svg>
+
+            <p class="choice">ROCK</p>
+          </container>
+          <container class="paper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="9em"
+              viewBox="0 0 512 512"
+              fill="currentColor"
+            >
+              <path
+                d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V336c0 1.5 0 3.1 .1 4.6L67.6 283c-16-15.2-41.3-14.6-56.6 1.4s-14.6 41.3 1.4 56.6L124.8 448c43.1 41.1 100.4 64 160 64H304c97.2 0 176-78.8 176-176V128c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V32z"
+              />
+            </svg>
+            <p class="choice">PAPER</p>
+          </container>
+
+          <container class="scissors">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="9em"
+              viewBox="0 0 512 512"
+              fill="currentColor"
+            >
+              <path
+                d="M40 208c-22.1 0-40 17.9-40 40s17.9 40 40 40l180.2 0c-7.6 8.5-12.2 19.7-12.2 32c0 25.3 19.5 46 44.3 47.9c-7.7 8.5-12.3 19.8-12.3 32.1c0 26.5 21.5 48 48 48l32 0 64 0c70.7 0 128-57.3 128-128l0-113.1c0-40.2-16-78.8-44.4-107.3C444.8 76.8 413.9 64 381.7 64L336 64c-21.3 0-39.3 13.9-45.6 33.1l74.5 23.7c8.4 2.7 13.1 11.7 10.4 20.1s-11.7 13.1-20.1 10.4L288 129.9l0 .1L84 65.8C62.9 59.2 40.5 70.9 33.8 92s5.1 43.5 26.2 50.2L269.5 208 40 208z"
+              />
+            </svg>
+            <p class="choice">SCISSORS</p>
+          </container>
+
+          <container class="fire">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="8em"
+              viewBox="0 0 448 512"
+              fill="currentColor"
+            >
+              <path
+                d="M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-30.1 37-42.9c7.9-7.4 20.1-7.4 28 .1c34.6 33 63.9 76.6 84.5 118c20.3 40.8 33.8 82.5 33.8 111.9C448 404.2 348.2 512 224 512C98.4 512 0 404.1 0 276.5c0-38.4 17.8-85.3 45.4-131.7C73.3 97.7 112.7 48.6 159.3 5.4zM225.7 416c25.3 0 47.7-7 68.8-21c42.1-29.4 53.4-88.2 28.1-134.4c-4.5-9-16-9.6-22.5-2l-25.2 29.3c-6.6 7.6-18.5 7.4-24.7-.5c-16.5-21-46-58.5-62.8-79.8c-6.3-8-18.3-8.1-24.7-.1c-33.8 42.5-50.8 69.3-50.8 99.4C112 375.4 162.6 416 225.7 416z"
+              />
+            </svg>
+            <p class="choice">FIRE</p>
+          </container>
+
+          <container class="water">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="8em"
+              viewBox="0 0 576 512"
+              fill="currentColor"
+            >
+              <path
+                d="M269.5 69.9c11.1-7.9 25.9-7.9 37 0C329 85.4 356.5 96 384 96c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 149.7 417 160 384 160c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4C42.8 92.6 61 83.5 75.3 71.6c11.1-9.5 27.3-10.1 39.2-1.7l0 0C136.7 85.2 165.1 96 192 96c27.5 0 55-10.6 77.5-26.1zm37 288C329 373.4 356.5 384 384 384c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 437.7 417 448 384 448c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7l0 0C136.7 373.2 165.1 384 192 384c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0zm0-144C329 229.4 356.5 240 384 240c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 293.7 417 304 384 304c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.5 27.3-10.1 39.2-1.7l0 0C136.7 229.2 165.1 240 192 240c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z"
+              />
+            </svg>
+            <p class="choice">WATER</p>
+          </container>
+        </section>
+
+        <button class="btn play-btn">LET'S GO!</button>
+      </section>
+    </main>
+
+    <footer>
+      <a href="http://www.github.com/camjohnson-code"
+        ><img src="assets/github-mark-white.png" alt="My GitHub portfolio"
+      /></a>
+      <a href="http://www.linkedin.com/in/camjohnson-code"
+        ><img src="assets/In-White-96.png" alt="My LinkedIn Profile"
+      /></a>
+    </footer>
   </body>
   <script src="main.js"></script>
+  <script src="https://kit.fontawesome.com/e003af7882.js" crossorigin="anonymous"></script>
 </html>
