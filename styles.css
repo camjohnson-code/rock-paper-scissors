@@ -20,13 +20,6 @@ header {
   align-items: center;
 }
 
-header p {
-  margin: 16px 0 0 30px;
-  font-weight: 100;
-  font-size: 1vw;
-  cursor: pointer;
-}
-
 header ul {
   width: 100%;
   display: flex;
@@ -80,7 +73,7 @@ header ul {
 }
 
 .btn {
-  border: none;
+  border: 0;
   border-radius: 40px;
   width: 15vw;
   aspect-ratio: 5 / 1;
@@ -88,7 +81,11 @@ header ul {
   font-weight: 800;
   font-size: larger;
   background: rgb(124, 55, 131);
-  background: linear-gradient(45deg, rgba(124, 55, 131, 1) 0%, rgba(231, 58, 147, 1) 100%);
+  background: linear-gradient(
+    45deg,
+    rgba(124, 55, 131, 1) 0%,
+    rgba(231, 58, 147, 1) 100%
+  );
   box-shadow: 3px 6px 7px rgba(0, 0, 0, 0.25);
   margin-right: 30px;
   cursor: pointer;
@@ -141,7 +138,7 @@ header ul {
 
 .game-result {
   margin: 0;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 .rock,
@@ -195,7 +192,11 @@ header ul {
 .scissors:hover .choice,
 .fire:hover .choice,
 .water:hover .choice {
-  background: linear-gradient(90deg, rgba(120, 54, 130, 1), rgba(230, 53, 147, 1));
+  background: linear-gradient(
+    90deg,
+    rgba(120, 54, 130, 1),
+    rgba(230, 53, 147, 1)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
