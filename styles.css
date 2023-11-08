@@ -158,24 +158,19 @@ header ul {
   cursor: pointer;
 }
 
-svg {
-  height: auto;
-  width: 9vw;
-}
-
-.paper p,
-.scissors p,
-.fire p,
-.water p {
-  margin-top: 45px
-}
-
 .options p {
   font-size: 2vw;
 }
 
 .play-btn {
   margin: 0;
+}
+
+.rock svg,
+.paper svg,
+.scissors svg {
+  width: auto;
+  height: 92px;
 }
 
 .rock:hover,
@@ -185,14 +180,6 @@ svg {
 .water:hover {
   transform: scale(1.1);
   background-color: rgba(255, 255, 255, 1);
-}
-
-.rock:hover svg,
-.paper:hover svg,
-.scissors:hover svg,
-.fire:hover svg,
-.water:hover svg {
-  fill: rgba(120, 54, 130, 1);
 }
 
 .rock:hover .choice,
