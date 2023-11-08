@@ -19,7 +19,6 @@ Indicate any related issues that this pull request addresses or resolves.
 - [ ] I have read the contribution guidelines.
 - [ ] I have tested the changes locally.
 - [ ] The code follows the project's coding standards.
-- [ ] All tests pass.
 - [ ] Documentation has been updated (if applicable).
 - [ ] I have added/updated unit tests (if applicable).
 - [ ] I have squashed/organized my commits.
