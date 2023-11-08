@@ -5,37 +5,82 @@ var hardModePage = document.querySelector('.hard-mode');
 var header = document.querySelector('header');
 var main = document.querySelector('main');
 var optionsSection = document.querySelector('.options');
-var rockSection = document.querySelector('.rock');
-var paperSection = document.querySelector('.paper');
-var scissorsSection = document.querySelector('.scissors');
-var rockIcons = rockSection.querySelectorAll('svg');
-var paperIcons = paperSection.querySelectorAll('svg');
-var scissorsIcons = scissorsSection.querySelectorAll('svg');
+var easyModeRock = document.querySelector('#easy-mode-rock');
+var easyModePaper = document.querySelector('#easy-mode-paper');
+var easyModeScissors = document.querySelector('#easy-mode-scissors');
+var hardModeRock = document.querySelector('#hard-mode-rock');
+var hardModePaper = document.querySelector('#hard-mode-paper');
+var hardModeScissors = document.querySelector('#hard-mode-scissors');
+var hardModeFire = document.querySelector('#hard-mode-fire');
+var hardModeWater = document.querySelector('#hard-mode-water');
+var easyRockIcons = easyModeRock.querySelectorAll('svg');
+var easyPaperIcons = easyModePaper.querySelectorAll('svg');
+var easyScissorsIcons = easyModeScissors.querySelectorAll('svg');
+var hardRockIcons = hardModeRock.querySelectorAll('svg');
+var hardPaperIcons = hardModePaper.querySelectorAll('svg');
+var hardScissorsIcons = hardModeScissors.querySelectorAll('svg');
+var hardFireIcons = hardModeFire.querySelectorAll('svg');
+var hardWaterIcons = hardModeWater.querySelectorAll('svg');
 var button = document.querySelector('.btn');
 
 // GLOBAL VARIABLES
 var toggleComplete = false;
 
 // EVENT LISTENERS
-rockSection.addEventListener('mouseenter', function () {
-  showGradientSVG(rockIcons);
+easyModeRock.addEventListener('mouseenter', function () {
+  showGradientSVG(easyRockIcons);
 });
-rockSection.addEventListener('mouseleave', function () {
-  hideGradientSVG(rockIcons);
-});
-
-paperSection.addEventListener('mouseenter', function () {
-  showGradientSVG(paperIcons);
-});
-paperSection.addEventListener('mouseleave', function () {
-  hideGradientSVG(paperIcons);
+easyModeRock.addEventListener('mouseleave', function () {
+  hideGradientSVG(easyRockIcons);
 });
 
-scissorsSection.addEventListener('mouseenter', function () {
-  showGradientSVG(scissorsIcons);
+easyModePaper.addEventListener('mouseenter', function () {
+  showGradientSVG(easyPaperIcons);
 });
-scissorsSection.addEventListener('mouseleave', function () {
-  hideGradientSVG(scissorsIcons);
+easyModePaper.addEventListener('mouseleave', function () {
+  hideGradientSVG(easyPaperIcons);
+});
+
+easyModeScissors.addEventListener('mouseenter', function () {
+  showGradientSVG(easyScissorsIcons);
+});
+easyModeScissors.addEventListener('mouseleave', function () {
+  hideGradientSVG(easyScissorsIcons);
+});
+
+hardModeRock.addEventListener('mouseenter', function () {
+  showGradientSVG(hardRockIcons);
+});
+hardModeRock.addEventListener('mouseleave', function () {
+  hideGradientSVG(hardRockIcons);
+});
+
+hardModePaper.addEventListener('mouseenter', function () {
+  showGradientSVG(hardPaperIcons);
+});
+hardModePaper.addEventListener('mouseleave', function () {
+  hideGradientSVG(hardPaperIcons);
+});
+
+hardModeScissors.addEventListener('mouseenter', function () {
+  showGradientSVG(hardScissorsIcons);
+});
+hardModeScissors.addEventListener('mouseleave', function () {
+  hideGradientSVG(hardScissorsIcons);
+});
+
+hardModeFire.addEventListener('mouseenter', function () {
+  showGradientSVG(hardFireIcons);
+});
+hardModeFire.addEventListener('mouseleave', function () {
+  hideGradientSVG(hardFireIcons);
+});
+
+hardModeWater.addEventListener('mouseenter', function () {
+  showGradientSVG(hardWaterIcons);
+});
+hardModeWater.addEventListener('mouseleave', function () {
+  hideGradientSVG(hardWaterIcons);
 });
 
 landingPage.addEventListener('click', function (event) {
