@@ -13,7 +13,7 @@
     <title>🕹️ Rock Paper Scissors</title>
   </head>
   <body>
-    <header class="">
+    <header class="hidden">
       <p>HOME</p>
       <ul class="links">
         <li>EASY MODE</li>
@@ -22,8 +22,8 @@
     </header>
 
     <main>
-      <section class="landing-page hidden">
-        <container class="info">
+      <section class="landing-page">
+        <section class="info">
           <h1>ROCK</h1>
           <h1>PAPER</h1>
           <h1>SCISSORS</h1>
@@ -31,72 +31,136 @@
             Welcome to the ultimate Rock, Paper, Scissors showdown! Get ready to unleash your
             strategic prowess and quick thinking in this classic game of wits. Will you crush your
             opponents with the mighty rock, outsmart them with the cunning paper, or leave them in
-            shambles with the swift scissors? The choice is yours, so jump in, challenge your
-            friends, and let the epic battles begin! May the best decision-maker emerge victorious!
+            shambles with the swift scissors? The choice is yours, so jump in, challenge the
+            computer, and let the epic battles begin! May the best decision-maker emerge victorious!
           </p>
 
-          <container class="buttons-container">
+          <section class="buttons-section">
             <button class="btn">EASY MODE</button>
             <button class="btn">HARD MODE</button>
-          </container>
-        </container>
+          </section>
+        </section>
         <img src="assets/logo.png" alt="Rock Paper Scissors logo" class="logo" />
       </section>
 
       <section class="easy-mode">
         <section class="scoreboard">
-          <container class="scoreboard-player">
+          <section class="scoreboard-player">
             <h2>PLAYER</h2>
             <p>0</p>
-          </container>
+          </section>
 
-          <container class="scoreboard-player">
+          <section class="scoreboard-player">
             <h2>COMPUTER</h2>
             <p>0</p>
-          </container>
+          </section>
         </section>
 
         <section class="options">
-          <container class="rock">
+          <section class="rock">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="8em"
+              viewBox="0 0 448 512"
+              fill="url(#grad1)"
+              class="hidden"
+            >
+              <path
+                d="M144 0C117.5 0 96 21.5 96 48V96v28.5V176c0 8.8-7.2 16-16 16s-16-7.2-16-16V149.3l-9 7.5C40.4 169 32 187 32 206V244c0 38 16.9 74 46.1 98.3L128 384v96c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V374.7c46.9-19 80-65 80-118.7V176 160 144c0-26.5-21.5-48-48-48c-12.4 0-23.6 4.7-32.1 12.3C350 83.5 329.3 64 304 64c-12.4 0-23.6 4.7-32.1 12.3C270 51.5 249.3 32 224 32c-12.4 0-23.6 4.7-32.1 12.3C190 19.5 169.3 0 144 0z"
+              />
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color: rgb(120, 54, 130); stop-opacity: 1" />
+                  <stop offset="100%" style="stop-color: rgb(230, 53, 147); stop-opacity: 1" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512"
               fill="currentColor"
+              class=""
             >
               <path
                 d="M144 0C117.5 0 96 21.5 96 48V96v28.5V176c0 8.8-7.2 16-16 16s-16-7.2-16-16V149.3l-9 7.5C40.4 169 32 187 32 206V244c0 38 16.9 74 46.1 98.3L128 384v96c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V374.7c46.9-19 80-65 80-118.7V176 160 144c0-26.5-21.5-48-48-48c-12.4 0-23.6 4.7-32.1 12.3C350 83.5 329.3 64 304 64c-12.4 0-23.6 4.7-32.1 12.3C270 51.5 249.3 32 224 32c-12.4 0-23.6 4.7-32.1 12.3C190 19.5 169.3 0 144 0z"
               />
             </svg>
-
             <h2 class="choice">ROCK</h2>
-          </container>
-          <container class="paper">
+          </section>
+
+          <section class="paper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="9em"
+              viewBox="0 0 512 512"
+              fill="url(#grad2)"
+              class="hidden"
+            >
+              <path
+                d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V336c0 1.5 0 3.1 .1 4.6L67.6 283c-16-15.2-41.3-14.6-56.6 1.4s-14.6 41.3 1.4 56.6L124.8 448c43.1 41.1 100.4 64 160 64H304c97.2 0 176-78.8 176-176V128c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V32z"
+              />
+              <defs>
+                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color: rgb(120, 54, 130); stop-opacity: 1" />
+                  <stop offset="100%" style="stop-color: rgb(230, 53, 147); stop-opacity: 1" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
               fill="currentColor"
             >
               <path
                 d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V336c0 1.5 0 3.1 .1 4.6L67.6 283c-16-15.2-41.3-14.6-56.6 1.4s-14.6 41.3 1.4 56.6L124.8 448c43.1 41.1 100.4 64 160 64H304c97.2 0 176-78.8 176-176V128c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V32z"
               />
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color: rgb(120, 54, 130); stop-opacity: 1" />
+                  <stop offset="100%" style="stop-color: rgb(230, 53, 147); stop-opacity: 1" />
+                </linearGradient>
+              </defs>
             </svg>
+
             <h2 class="choice">PAPER</h2>
-          </container>
-          <container class="scissors">
+          </section>
+
+          <section class="scissors">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="9em"
+              viewBox="0 0 512 512"
+              fill="url(#grad3)"
+              class="hidden"
+            >
+              <path
+                d="M40 208c-22.1 0-40 17.9-40 40s17.9 40 40 40l180.2 0c-7.6 8.5-12.2 19.7-12.2 32c0 25.3 19.5 46 44.3 47.9c-7.7 8.5-12.3 19.8-12.3 32.1c0 26.5 21.5 48 48 48l32 0 64 0c70.7 0 128-57.3 128-128l0-113.1c0-40.2-16-78.8-44.4-107.3C444.8 76.8 413.9 64 381.7 64L336 64c-21.3 0-39.3 13.9-45.6 33.1l74.5 23.7c8.4 2.7 13.1 11.7 10.4 20.1s-11.7 13.1-20.1 10.4L288 129.9l0 .1L84 65.8C62.9 59.2 40.5 70.9 33.8 92s5.1 43.5 26.2 50.2L269.5 208 40 208z"
+              />
+              <defs>
+                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color: rgb(120, 54, 130); stop-opacity: 1" />
+                  <stop offset="100%" style="stop-color: rgb(230, 53, 147); stop-opacity: 1" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
               fill="currentColor"
             >
               <path
                 d="M40 208c-22.1 0-40 17.9-40 40s17.9 40 40 40l180.2 0c-7.6 8.5-12.2 19.7-12.2 32c0 25.3 19.5 46 44.3 47.9c-7.7 8.5-12.3 19.8-12.3 32.1c0 26.5 21.5 48 48 48l32 0 64 0c70.7 0 128-57.3 128-128l0-113.1c0-40.2-16-78.8-44.4-107.3C444.8 76.8 413.9 64 381.7 64L336 64c-21.3 0-39.3 13.9-45.6 33.1l74.5 23.7c8.4 2.7 13.1 11.7 10.4 20.1s-11.7 13.1-20.1 10.4L288 129.9l0 .1L84 65.8C62.9 59.2 40.5 70.9 33.8 92s5.1 43.5 26.2 50.2L269.5 208 40 208z"
               />
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color: rgb(120, 54, 130); stop-opacity: 1" />
+                  <stop offset="100%" style="stop-color: rgb(230, 53, 147); stop-opacity: 1" />
+                </linearGradient>
+              </defs>
             </svg>
-            <p class="choice">SCISSORS</p>
-          </container>
+
+            <h2 class="choice">SCISSORS</h2>
+          </section>
         </section>
 
         <button class="btn play-btn">LET'S GO!</button>
@@ -104,19 +168,19 @@
 
       <section class="hard-mode hidden">
         <section class="scoreboard">
-          <container class="scoreboard-player">
+          <section class="scoreboard-player">
             <h2>PLAYER</h2>
             <p>0</p>
-          </container>
+          </section>
 
-          <container class="scoreboard-player">
+          <section class="scoreboard-player">
             <h2>COMPUTER</h2>
             <p>0</p>
-          </container>
+          </section>
         </section>
 
         <section class="options">
-          <container class="rock">
+          <section class="rock">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="8em"
@@ -129,8 +193,8 @@
             </svg>
 
             <p class="choice">ROCK</p>
-          </container>
-          <container class="paper">
+          </section>
+          <section class="paper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="9em"
@@ -142,9 +206,9 @@
               />
             </svg>
             <p class="choice">PAPER</p>
-          </container>
+          </section>
 
-          <container class="scissors">
+          <section class="scissors">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="9em"
@@ -156,9 +220,9 @@
               />
             </svg>
             <p class="choice">SCISSORS</p>
-          </container>
+          </section>
 
-          <container class="fire">
+          <section class="fire">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="8em"
@@ -170,9 +234,9 @@
               />
             </svg>
             <p class="choice">FIRE</p>
-          </container>
+          </section>
 
-          <container class="water">
+          <section class="water">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="8em"
@@ -184,7 +248,7 @@
               />
             </svg>
             <p class="choice">WATER</p>
-          </container>
+          </section>
         </section>
 
         <button class="btn play-btn">LET'S GO!</button>
@@ -201,5 +265,4 @@
     </footer>
   </body>
   <script src="main.js"></script>
-  <script src="https://kit.fontawesome.com/e003af7882.js" crossorigin="anonymous"></script>
 </html>
