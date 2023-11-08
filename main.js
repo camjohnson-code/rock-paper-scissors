@@ -22,11 +22,29 @@ var hardScissorsIcons = hardModeScissors.querySelectorAll('svg');
 var hardFireIcons = hardModeFire.querySelectorAll('svg');
 var hardWaterIcons = hardModeWater.querySelectorAll('svg');
 var button = document.querySelector('.btn');
+var easyModeBtn = document.querySelector('.easy-mode-button');
+var hardModeBtn = document.querySelector('.hard-mode-button');
+var homeBtn = document.querySelector('.home-button');
+var easyModeHeader = document.querySelector('.easy-mode-page');
+var hardModeHeader = document.querySelector('.hard-mode-page');
 
 // GLOBAL VARIABLES
 var toggleComplete = false;
 
 // EVENT LISTENERS
+// Click event listeners
+landingPage.addEventListener('click', function (event) {
+  displayEasyModePage(event);
+  displayHardModePage(event);
+});
+
+header.addEventListener('click', function (event) {
+  hideHeader(event);
+  displayEasyModePage(event);
+  displayHardModePage(event);
+});
+
+// Hover event listeners
 easyModeRock.addEventListener('mouseenter', function () {
   showGradientSVG(easyRockIcons);
 });
@@ -96,6 +114,37 @@ function showElement(element) {
 
 function hideElement(element) {
   element.classList.add('hidden');
+}
+
+// Dom Manipulation
+function displayEasyModePage(event) {
+  if (event.target.classList.contains('easy-mode-button')) {
+    showElement(easyModePage);
+    showElement(header);
+    showElement(hardModeBtn)
+    hideElement(landingPage);
+    hideElement(easyModeBtn)
+  }
+}
+
+function displayHardModePage(event) {
+  if (event.target.classList.contains('hard-mode-button')) {
+    showElement(hardModePage);
+    showElement(header);
+    showElement(easyModeHeader);
+    hideElement(landingPage);
+    hideElement(hardModeHeader);
+    hideElement(easyModePage)
+  }
+}
+
+function hideHeader(event) {
+  if (event.target.classList.contains('home-button')) {
+    showElement(landingPage);
+    hideElement(header);
+    hideElement(hardModePage);
+    hideElement(easyModePage);
+  }
 }
 
 // Styling elements
