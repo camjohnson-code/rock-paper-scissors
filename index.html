@@ -13,16 +13,16 @@
     <title>🕹️ Rock Paper Scissors</title>
   </head>
   <body>
-    <header class="">
-      <p>HOME</p>
+    <header class="hidden">
       <ul class="links">
-        <li>EASY MODE</li>
-        <li>HARD MODE</li>
+        <li class="home-button">HOME</li>
+        <li class="easy-mode-page easy-mode-button">EASY MODE</li>
+        <li class="hard-mode-page hard-mode-button">HARD MODE</li>
       </ul>
     </header>
 
     <main>
-      <section class="landing-page hidden">
+      <section class="landing-page">
         <section class="info">
           <h1>ROCK</h1>
           <h1>PAPER</h1>
@@ -36,14 +36,14 @@
           </p>
 
           <section class="buttons-section">
-            <button class="btn">EASY MODE</button>
-            <button class="btn">HARD MODE</button>
+            <button class="btn easy-mode-button">EASY MODE</button>
+            <button class="btn hard-mode-button">HARD MODE</button>
           </section>
         </section>
         <img src="assets/logo.png" alt="Rock Paper Scissors logo" class="logo" />
       </section>
 
-      <section class="easy-mode">
+      <section class="easy-mode hidden">
         <section class="scoreboard">
           <section class="scoreboard-player">
             <h2>PLAYER</h2>
@@ -159,7 +159,7 @@
         <button class="btn play-btn">LET'S GO!</button>
       </section>
 
-      <section class="hard-mode">
+      <section class="hard-mode hidden">
         <section class="scoreboard">
           <section class="scoreboard-player">
             <h2>PLAYER</h2>
@@ -331,7 +331,7 @@
       </section>
     </main>
 
-    <footer>
+    <footer class="hidden">
       <a href="http://www.github.com/camjohnson-code"
         ><img src="assets/github-mark-white.png" alt="My GitHub portfolio"
       /></a>
