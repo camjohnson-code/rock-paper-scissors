@@ -25,18 +25,106 @@ var hardPaperIcons = hardModePaper.querySelectorAll('svg');
 var hardScissorsIcons = hardModeScissors.querySelectorAll('svg');
 var hardFireIcons = hardModeFire.querySelectorAll('svg');
 var hardWaterIcons = hardModeWater.querySelectorAll('svg');
-var button = document.querySelector('.btn');
+var playBtn = document.querySelector('.play-btn');
 var easyModeBtn = document.querySelector('.easy-mode-button');
 var hardModeBtn = document.querySelector('.hard-mode-button');
 var homeBtn = document.querySelector('.home-button');
 var easyModeHeader = document.querySelector('.easy-mode-page');
 var hardModeHeader = document.querySelector('.hard-mode-page');
+var gameResultMessage = document.querySelector('.game-result');
+var humanScore = document.querySelector('.human-score');
+var computerScore = document.querySelector('.computer-score');
+
+// GLOBAL VARIABLES
+var human = createPlayer('human', '🏋️');
+var computer = createPlayer('computer', '🤖');
+var easyModeChoices = ['rock', 'paper', 'scissors'];
+var hardModeChoices = ['rock', 'paper', 'scissors', 'fire', 'water'];
+
+createGame('human', '🧟‍♂️', 'computer', '🤖');
+
+// DATA MODEL
+function createPlayer(name, token) {
+  return {
+    name: name,
+    token: token,
+    easyWins: 0,
+    hardWins: 0,
+  };
+}
+
+function createGame(player1Name, player1Token, player2Name, player2Token) {
+  var game = {
+    human: createPlayer(player1Name, player1Token),
+    computer: createPlayer(player2Name, player2Token),
+  };
+
+  return game;
+}
+
+function addToScore(winner) {
+  winner.easyWins += 1;
+  return winner;
+}
+
+function generateChoice() {
+  var choice = easyModeChoices[generateRandomNumber(easyModeChoices)];
+  return choice;
+}
+
+function determineHumanChoice() {
+  var allChoices = Array.from(optionsSection.children);
+  var humanChoice = '';
+
+  for (i = 0; i < allChoices.length; i++) {
+    if (allChoices[i].classList.contains('choice-selected'))
+      humanChoice = allChoices[i].classList.item(0);
+  }
+
+  return humanChoice;
+}
+
+function takeTurn() {
+  var computerChoice = generateChoice();
+  var humanChoice = determineHumanChoice();
+
+  if (humanChoice === computerChoice) displayGameOutcome();
+  if (humanChoice === 'rock' && computerChoice === 'paper')
+    displayGameOutcome('Computer'), addToScore(computer);
+  if (humanChoice === 'rock' && computerChoice === 'scissors')
+    displayGameOutcome('Player'), addToScore(human);
+  if (humanChoice === 'paper' && computerChoice === 'rock')
+    displayGameOutcome('Player'), addToScore(human);
+  if (humanChoice === 'paper' && computerChoice === 'scissors')
+    displayGameOutcome('Computer'), addToScore(computer);
+  if (humanChoice === 'scissors' && computerChoice === 'rock')
+    displayGameOutcome('Computer'), addToScore(computer);
+  if (humanChoice === 'scissors' && computerChoice === 'paper')
+    displayGameOutcome('Player'), addToScore(human);
+}
+
+function updateHumanScore() {
+  humanScore.innerText = '';
+  humanScore.innerText = `${human.easyWins}`;
+  return humanScore;
+}
+
+function updateComputerScore() {
+  computerScore.innerText = '';
+  computerScore.innerText = `${computer.easyWins}`;
+  return computerScore;
+}
+
+function newGame() {
+  setTimeout(function () {
+    clearGameOutcome();
+    resetOptions();
+  }, 2000);
+}
 
 // EVENT LISTENERS
 // Click event listeners
 landingPage.addEventListener('click', function (event) {
-  showEasyMode(event);
-  showHardMode(event);
   displayEasyModePage(event);
   displayHardModePage(event);
 });
@@ -49,6 +137,13 @@ header.addEventListener('click', function (event) {
 
 easyModeSection.addEventListener('click', function (event) {
   selectChoice(event);
+});
+
+playBtn.addEventListener('click', function (event) {
+  takeTurn();
+  updateComputerScore();
+  updateHumanScore();
+  newGame();
 });
 
 // Hover event listeners
@@ -116,6 +211,10 @@ function hideElement(element) {
   element.classList.add('hidden');
 }
 
+function generateRandomNumber(array) {
+  return Math.floor(Math.random() * array.length);
+}
+
 // Dom manipulation functions
 function displayEasyModePage(event) {
   if (event.target.classList.contains('easy-mode-button')) {
@@ -147,7 +246,7 @@ function hideHeader(event) {
   }
 }
 
-// Styling functions
+// Selecting choices functions
 function selectChoice(event) {
   displaySelectedChoice(event);
   removeAllChoices(event);
@@ -190,15 +289,14 @@ function displaySelectedChoice(event) {
 
 function removeAllChoices(event) {
   if (
-    !event.target.classList.contains('choice') &&
-    !event.target.classList.contains('options') &&
+    !event.target.closest('section').classList.contains('choice') &&
+    !event.target.closest('section').classList.contains('options') &&
     !event.target.classList.contains('play-btn')
   )
-    resetOptions(event);
+    resetOptions();
 }
 
-function resetOptions(event) {
-  var isChoiceElement = event.target.closest('.choice');
+function resetOptions() {
   var allChoices = document.querySelectorAll('.choice');
 
   for (let j = 0; j < allChoices.length; j++) {
@@ -211,4 +309,15 @@ function resetOptions(event) {
   showElement(easyRockWhiteIcon);
   showElement(easyPaperWhiteIcon);
   showElement(easyScissorsWhiteIcon);
+}
+
+// Game outcome functions
+function displayGameOutcome(winner) {
+  if (!winner)
+    return (gameResultMessage.innerText = `Nobody wins! It's a tie!`);
+  return (gameResultMessage.innerText = `${winner} wins!`);
+}
+
+function clearGameOutcome() {
+  return (gameResultMessage.innerText = ``);
 }
