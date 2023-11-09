@@ -183,16 +183,18 @@ header ul {
 .paper:hover,
 .scissors:hover,
 .fire:hover,
-.water:hover {
+.water:hover,
+.choice-selected {
   transform: scale(1.1);
   background-color: rgba(255, 255, 255, 1);
 }
 
-.rock:hover .choice,
-.paper:hover .choice,
-.scissors:hover .choice,
-.fire:hover .choice,
-.water:hover .choice {
+.rock:hover h2,
+.paper:hover h2,
+.scissors:hover h2,
+.fire:hover h2,
+.water:hover h2,
+.choice-selected h2 {
   background: linear-gradient(
     90deg,
     rgba(120, 54, 130, 1),
