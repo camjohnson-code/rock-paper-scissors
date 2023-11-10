@@ -92,8 +92,7 @@ header ul {
   cursor: pointer;
 }
 
-.easy-mode,
-.hard-mode {
+.game {
   display: flex;
   flex-direction: column;
   height: 85vh;
@@ -110,7 +109,7 @@ header ul {
   margin: 50px 0;
 }
 
-.hard-mode .options {
+.hard-mode {
   width: 80vw;
 }
 
