@@ -27,7 +27,7 @@ var easyModeChoices = ['rock', 'paper', 'scissors'];
 var hardModeChoices = ['rock', 'paper', 'scissors', 'fire', 'water'];
 var isEasyMode = true;
 
-createGame(human, computer);
+// createGame(human, computer);
 
 // DATA MODEL
 function createPlayer(name, token) {
@@ -39,14 +39,14 @@ function createPlayer(name, token) {
   };
 }
 
-function createGame(player1, player2) {
-  var game = {
-    human: player1,
-    computer: player2,
-  };
+// function createGame(player1, player2) {
+//   var game = {
+//     human: player1,
+//     computer: player2,
+//   };
 
-  return game;
-}
+//   return game;
+// }
 
 function addToScore(winner) {
   if (isEasyMode) {
@@ -165,8 +165,9 @@ header.addEventListener('click', function (event) {
   displayHardMode(event);
 });
 
-optionsSection.addEventListener('click', function (event) {
-  selectChoice(event);
+game.addEventListener('click', function (event) {
+  displaySelectedChoice(event);
+  removeAllChoices(event);
 });
 
 playBtn.addEventListener('click', function (event) {
@@ -305,11 +306,6 @@ function hideHeader(event) {
 }
 
 // Selecting choices functions
-function selectChoice(event) {
-  displaySelectedChoice(event);
-  removeAllChoices(event);
-}
-
 function displaySelectedChoice(event) {
   if (event.target.closest('section').classList.contains('choice')) {
     var isChoiceElement = event.target.closest('.choice');

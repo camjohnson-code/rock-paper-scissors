@@ -62,14 +62,15 @@ header ul {
 .landing-page h1 {
   margin: 0;
   font-weight: 800;
-  font-size: 6vw;
-  line-height: 10vh;
+  font-size: 90px;
+  line-height: 90px;
 }
 
 .landing-page p {
-  font-size: 1.25vw;
+  font-size: 18px;
   font-weight: 200;
-  margin: 20px 0 20px 0;
+  line-height: 23px;
+  margin: 10px 0 20px 0;
   width: 45vw;
 }
 
