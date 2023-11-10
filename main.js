@@ -58,7 +58,11 @@ function addToScore(winner) {
 }
 
 function generateChoice() {
-  var choice = easyModeChoices[generateRandomNumber(easyModeChoices)];
+  if (isEasyMode) {
+    var choice = easyModeChoices[generateRandomNumber(easyModeChoices)];
+  } else {
+    var choice = hardModeChoices[generateRandomNumber(hardModeChoices)];
+  }
   return choice;
 }
 
