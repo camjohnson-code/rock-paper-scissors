@@ -1,36 +1,21 @@
 // EVENT HANDLERS
 var landingPage = document.querySelector('.landing-page');
-var easyModePage = document.querySelector('.easy-mode');
-var hardModePage = document.querySelector('.hard-mode');
+var game = document.querySelector('.game');
 var header = document.querySelector('header');
-var main = document.querySelector('main');
 var easyModeSection = document.querySelector('.easy-mode');
 var optionsSection = document.querySelector('.options');
-var easyModeRock = document.querySelector('.easy-mode-rock');
-var easyModePaper = document.querySelector('.easy-mode-paper');
-var easyModeScissors = document.querySelector('.easy-mode-scissors');
-var hardModeRock = document.querySelector('.hard-mode-rock');
-var hardModePaper = document.querySelector('.hard-mode-paper');
-var hardModeScissors = document.querySelector('.hard-mode-scissors');
-var hardModeFire = document.querySelector('.hard-mode-fire');
-var hardModeWater = document.querySelector('.hard-mode-water');
-var easyRockWhiteIcon = easyModeRock.querySelector('.white-svg');
-var easyRockSVGIcon = easyModeRock.querySelector('.gradient-svg');
-var easyPaperWhiteIcon = easyModePaper.querySelector('.white-svg');
-var easyPaperSVGIcon = easyModePaper.querySelector('.gradient-svg');
-var easyScissorsWhiteIcon = easyModeScissors.querySelector('.white-svg');
-var easyScissorsSVGIcon = easyModeScissors.querySelector('.gradient-svg');
-var hardRockIcons = hardModeRock.querySelectorAll('svg');
-var hardPaperIcons = hardModePaper.querySelectorAll('svg');
-var hardScissorsIcons = hardModeScissors.querySelectorAll('svg');
-var hardFireIcons = hardModeFire.querySelectorAll('svg');
-var hardWaterIcons = hardModeWater.querySelectorAll('svg');
+var rockChoice = document.querySelector('.rock');
+var paperChoice = document.querySelector('.paper');
+var scissorsChoice = document.querySelector('.scissors');
+var fireChoice = document.querySelector('.fire');
+var waterChoice = document.querySelector('.water');
+var whiteSVG = document.querySelectorAll('.white-svg');
+var gradientSVG = document.querySelectorAll('.gradient-svg');
 var playBtn = document.querySelector('.play-btn');
 var easyModeBtn = document.querySelector('.easy-mode-button');
 var hardModeBtn = document.querySelector('.hard-mode-button');
+var howToPlayBtn = document.querySelector('.how-to-play');
 var homeBtn = document.querySelector('.home-button');
-var easyModeHeader = document.querySelector('.easy-mode-page');
-var hardModeHeader = document.querySelector('.hard-mode-page');
 var gameResultMessage = document.querySelector('.game-result');
 var humanScore = document.querySelector('.human-score');
 var computerScore = document.querySelector('.computer-score');
@@ -40,8 +25,9 @@ var human = createPlayer('human', '🏋️');
 var computer = createPlayer('computer', '🤖');
 var easyModeChoices = ['rock', 'paper', 'scissors'];
 var hardModeChoices = ['rock', 'paper', 'scissors', 'fire', 'water'];
+var isEasyMode = true;
 
-createGame('human', '🧟‍♂️', 'computer', '🤖');
+createGame(human, computer);
 
 // DATA MODEL
 function createPlayer(name, token) {
@@ -53,17 +39,21 @@ function createPlayer(name, token) {
   };
 }
 
-function createGame(player1Name, player1Token, player2Name, player2Token) {
+function createGame(player1, player2) {
   var game = {
-    human: createPlayer(player1Name, player1Token),
-    computer: createPlayer(player2Name, player2Token),
+    human: player1,
+    computer: player2,
   };
 
   return game;
 }
 
 function addToScore(winner) {
-  winner.easyWins += 1;
+  if (isEasyMode) {
+    winner.easyWins += 1;
+  } else {
+    winner.hardWins += 1;
+  }
   return winner;
 }
 
@@ -89,29 +79,65 @@ function takeTurn() {
   var humanChoice = determineHumanChoice();
 
   if (humanChoice === computerChoice) displayGameOutcome();
-  if (humanChoice === 'rock' && computerChoice === 'paper')
-    displayGameOutcome('Computer'), addToScore(computer);
   if (humanChoice === 'rock' && computerChoice === 'scissors')
-    displayGameOutcome('Player'), addToScore(human);
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'rock' && computerChoice === 'water')
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'rock' && computerChoice === 'paper')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+  if (humanChoice === 'rock' && computerChoice === 'fire')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
   if (humanChoice === 'paper' && computerChoice === 'rock')
-    displayGameOutcome('Player'), addToScore(human);
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'paper' && computerChoice === 'water')
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
   if (humanChoice === 'paper' && computerChoice === 'scissors')
-    displayGameOutcome('Computer'), addToScore(computer);
-  if (humanChoice === 'scissors' && computerChoice === 'rock')
-    displayGameOutcome('Computer'), addToScore(computer);
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+  if (humanChoice === 'paper' && computerChoice === 'fire')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
   if (humanChoice === 'scissors' && computerChoice === 'paper')
-    displayGameOutcome('Player'), addToScore(human);
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'scissors' && computerChoice === 'water')
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'scissors' && computerChoice === 'rock')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+  if (humanChoice === 'scissors' && computerChoice === 'fire')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+  if (humanChoice === 'fire' && computerChoice === 'paper')
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'fire' && computerChoice === 'rock')
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'fire' && computerChoice === 'scissors')
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'fire' && computerChoice === 'water')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+  if (humanChoice === 'water' && computerChoice === 'fire')
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (humanChoice === 'water' && computerChoice === 'rock')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+  if (humanChoice === 'water' && computerChoice === 'paper')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+  if (humanChoice === 'water' && computerChoice === 'scissors')
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
 }
 
 function updateHumanScore() {
   humanScore.innerText = '';
-  humanScore.innerText = `${human.easyWins}`;
+  if (isEasyMode) {
+    humanScore.innerText = `${human.easyWins}`;
+  } else {
+    humanScore.innerText = `${human.hardWins}`;
+  }
   return humanScore;
 }
 
 function updateComputerScore() {
   computerScore.innerText = '';
-  computerScore.innerText = `${computer.easyWins}`;
+  if (isEasyMode) {
+    computerScore.innerText = `${computer.easyWins}`;
+  } else {
+    computerScore.innerText = `${computer.hardWins}`;
+  }
   return computerScore;
 }
 
@@ -125,17 +151,17 @@ function newGame() {
 // EVENT LISTENERS
 // Click event listeners
 landingPage.addEventListener('click', function (event) {
-  displayEasyModePage(event);
-  displayHardModePage(event);
+  displayEasyMode(event);
+  displayHardMode(event);
 });
 
 header.addEventListener('click', function (event) {
   hideHeader(event);
-  displayEasyModePage(event);
-  displayHardModePage(event);
+  displayEasyMode(event);
+  displayHardMode(event);
 });
 
-easyModeSection.addEventListener('click', function (event) {
+optionsSection.addEventListener('click', function (event) {
   selectChoice(event);
 });
 
@@ -147,59 +173,75 @@ playBtn.addEventListener('click', function (event) {
 });
 
 // Hover event listeners
-easyModeRock.addEventListener('mouseenter', function (event) {
+rockChoice.addEventListener('mouseenter', function (event) {
   if (!event.target.classList.contains('choice-selected')) {
-    hideElement(easyRockWhiteIcon);
-    showElement(easyRockSVGIcon);
-  }
-});
-easyModeRock.addEventListener('mouseleave', function (event) {
-  if (!event.target.classList.contains('choice-selected')) {
-    showElement(easyRockWhiteIcon);
-    hideElement(easyRockSVGIcon);
+    hideElement(whiteSVG[0]);
+    showElement(gradientSVG[0]);
   }
 });
 
-easyModePaper.addEventListener('mouseenter', function (event) {
+rockChoice.addEventListener('mouseleave', function (event) {
   if (!event.target.classList.contains('choice-selected')) {
-    hideElement(easyPaperWhiteIcon);
-    showElement(easyPaperSVGIcon);
-  }
-});
-easyModePaper.addEventListener('mouseleave', function (event) {
-  if (!event.target.classList.contains('choice-selected')) {
-    showElement(easyPaperWhiteIcon);
-    hideElement(easyPaperSVGIcon);
+    showElement(whiteSVG[0]);
+    hideElement(gradientSVG[0]);
   }
 });
 
-easyModeScissors.addEventListener('mouseenter', function (event) {
+paperChoice.addEventListener('mouseenter', function (event) {
   if (!event.target.classList.contains('choice-selected')) {
-    hideElement(easyScissorsWhiteIcon);
-    showElement(easyScissorsSVGIcon);
-  }
-});
-easyModeScissors.addEventListener('mouseleave', function (event) {
-  if (!event.target.classList.contains('choice-selected')) {
-    showElement(easyScissorsWhiteIcon);
-    hideElement(easyScissorsSVGIcon);
+    hideElement(whiteSVG[1]);
+    showElement(gradientSVG[1]);
   }
 });
 
-// hardModeRock.addEventListener('mouseenter', function () {});
-// hardModeRock.addEventListener('mouseleave', function () {});
+paperChoice.addEventListener('mouseleave', function (event) {
+  if (!event.target.classList.contains('choice-selected')) {
+    showElement(whiteSVG[1]);
+    hideElement(gradientSVG[1]);
+  }
+});
 
-// hardModePaper.addEventListener('mouseenter', function () {});
-// hardModePaper.addEventListener('mouseleave', function () {});
+scissorsChoice.addEventListener('mouseenter', function (event) {
+  if (!event.target.classList.contains('choice-selected')) {
+    hideElement(whiteSVG[2]);
+    showElement(gradientSVG[2]);
+  }
+});
 
-// hardModeScissors.addEventListener('mouseenter', function () {});
-// hardModeScissors.addEventListener('mouseleave', function () {});
+scissorsChoice.addEventListener('mouseleave', function (event) {
+  if (!event.target.classList.contains('choice-selected')) {
+    showElement(whiteSVG[2]);
+    hideElement(gradientSVG[2]);
+  }
+});
 
-// hardModeFire.addEventListener('mouseenter', function () {});
-// hardModeFire.addEventListener('mouseleave', function () {});
+fireChoice.addEventListener('mouseenter', function (event) {
+  if (!event.target.classList.contains('choice-selected')) {
+    hideElement(whiteSVG[3]);
+    showElement(gradientSVG[3]);
+  }
+});
 
-// hardModeWater.addEventListener('mouseenter', function () {});
-// hardModeWater.addEventListener('mouseleave', function () {});
+fireChoice.addEventListener('mouseleave', function (event) {
+  if (!event.target.classList.contains('choice-selected')) {
+    showElement(whiteSVG[3]);
+    hideElement(gradientSVG[3]);
+  }
+});
+
+waterChoice.addEventListener('mouseenter', function (event) {
+  if (!event.target.classList.contains('choice-selected')) {
+    hideElement(whiteSVG[4]);
+    showElement(gradientSVG[4]);
+  }
+});
+
+waterChoice.addEventListener('mouseleave', function (event) {
+  if (!event.target.classList.contains('choice-selected')) {
+    showElement(whiteSVG[4]);
+    hideElement(gradientSVG[4]);
+  }
+});
 
 // FUNCTIONS
 // Helper functions
@@ -216,24 +258,37 @@ function generateRandomNumber(array) {
 }
 
 // Dom manipulation functions
-function displayEasyModePage(event) {
+function displayEasyMode(event) {
   if (event.target.classList.contains('easy-mode-button')) {
-    showElement(easyModePage);
+    showElement(game);
     showElement(header);
     showElement(hardModeBtn);
     hideElement(landingPage);
     hideElement(easyModeBtn);
+    hideElement(fireChoice);
+    hideElement(waterChoice);
+    hideElement(howToPlayBtn);
+    isEasyMode = true;
+    optionsSection.classList.remove('hard-mode');
+    humanScore.innerText = `${human.easyWins}`;
+    computerScore.innerText = `${computer.easyWins}`;
   }
 }
 
-function displayHardModePage(event) {
+function displayHardMode(event) {
   if (event.target.classList.contains('hard-mode-button')) {
-    showElement(hardModePage);
+    showElement(game);
     showElement(header);
-    showElement(easyModeHeader);
+    showElement(easyModeBtn);
+    showElement(fireChoice);
+    showElement(waterChoice);
+    showElement(howToPlayBtn);
     hideElement(landingPage);
-    hideElement(hardModeHeader);
-    hideElement(easyModePage);
+    hideElement(hardModeBtn);
+    isEasyMode = false;
+    optionsSection.classList.add('hard-mode');
+    humanScore.innerText = `${human.hardWins}`;
+    computerScore.innerText = `${computer.hardWins}`;
   }
 }
 
@@ -241,8 +296,7 @@ function hideHeader(event) {
   if (event.target.classList.contains('home-button')) {
     showElement(landingPage);
     hideElement(header);
-    hideElement(hardModePage);
-    hideElement(easyModePage);
+    hideElement(game);
   }
 }
 
@@ -263,23 +317,55 @@ function displaySelectedChoice(event) {
       }
 
       if (isChoiceElement.classList.contains('rock')) {
-        showElement(easyRockSVGIcon);
-        showElement(easyPaperWhiteIcon);
-        showElement(easyScissorsWhiteIcon);
-        hideElement(easyPaperSVGIcon);
-        hideElement(easyScissorsSVGIcon);
+        showElement(gradientSVG[0]);
+        showElement(whiteSVG[1]);
+        showElement(whiteSVG[2]);
+        showElement(whiteSVG[3]);
+        showElement(whiteSVG[4]);
+        hideElement(gradientSVG[1]);
+        hideElement(gradientSVG[2]);
+        hideElement(gradientSVG[3]);
+        hideElement(gradientSVG[4]);
       } else if (isChoiceElement.classList.contains('paper')) {
-        showElement(easyPaperSVGIcon);
-        showElement(easyRockWhiteIcon);
-        showElement(easyScissorsWhiteIcon);
-        hideElement(easyRockSVGIcon);
-        hideElement(easyScissorsSVGIcon);
+        showElement(gradientSVG[1]);
+        showElement(whiteSVG[0]);
+        showElement(whiteSVG[2]);
+        showElement(whiteSVG[3]);
+        showElement(whiteSVG[4]);
+        hideElement(gradientSVG[0]);
+        hideElement(gradientSVG[2]);
+        hideElement(gradientSVG[3]);
+        hideElement(gradientSVG[4]);
+      } else if (isChoiceElement.classList.contains('scissors')) {
+        showElement(gradientSVG[2]);
+        showElement(whiteSVG[0]);
+        showElement(whiteSVG[1]);
+        showElement(whiteSVG[3]);
+        showElement(whiteSVG[4]);
+        hideElement(gradientSVG[0]);
+        hideElement(gradientSVG[1]);
+        hideElement(gradientSVG[3]);
+        hideElement(gradientSVG[4]);
+      } else if (isChoiceElement.classList.contains('fire')) {
+        showElement(gradientSVG[3]);
+        showElement(whiteSVG[0]);
+        showElement(whiteSVG[1]);
+        showElement(whiteSVG[2]);
+        showElement(whiteSVG[4]);
+        hideElement(gradientSVG[0]);
+        hideElement(gradientSVG[1]);
+        hideElement(gradientSVG[2]);
+        hideElement(gradientSVG[4]);
       } else {
-        showElement(easyScissorsSVGIcon);
-        showElement(easyRockWhiteIcon);
-        showElement(easyPaperWhiteIcon);
-        hideElement(easyRockSVGIcon);
-        hideElement(easyPaperSVGIcon);
+        showElement(gradientSVG[4]);
+        showElement(whiteSVG[0]);
+        showElement(whiteSVG[1]);
+        showElement(whiteSVG[2]);
+        showElement(whiteSVG[3]);
+        hideElement(gradientSVG[0]);
+        hideElement(gradientSVG[1]);
+        hideElement(gradientSVG[2]);
+        hideElement(gradientSVG[3]);
       }
 
       isChoiceElement.classList.add('choice-selected');
@@ -292,8 +378,10 @@ function removeAllChoices(event) {
     !event.target.closest('section').classList.contains('choice') &&
     !event.target.closest('section').classList.contains('options') &&
     !event.target.classList.contains('play-btn')
-  )
+  ) {
+    console.log('hi');
     resetOptions();
+  }
 }
 
 function resetOptions() {
@@ -303,19 +391,23 @@ function resetOptions() {
     allChoices[j].classList.remove('choice-selected');
   }
 
-  hideElement(easyRockSVGIcon);
-  hideElement(easyPaperSVGIcon);
-  hideElement(easyScissorsSVGIcon);
-  showElement(easyRockWhiteIcon);
-  showElement(easyPaperWhiteIcon);
-  showElement(easyScissorsWhiteIcon);
+  hideElement(gradientSVG[0]);
+  hideElement(gradientSVG[1]);
+  hideElement(gradientSVG[2]);
+  hideElement(gradientSVG[3]);
+  hideElement(gradientSVG[4]);
+  showElement(whiteSVG[0]);
+  showElement(whiteSVG[1]);
+  showElement(whiteSVG[2]);
+  showElement(whiteSVG[3]);
+  showElement(whiteSVG[4]);
 }
 
 // Game outcome functions
-function displayGameOutcome(winner) {
+function displayGameOutcome(computerChoice, winner) {
   if (!winner)
     return (gameResultMessage.innerText = `Nobody wins! It's a tie!`);
-  return (gameResultMessage.innerText = `${winner} wins!`);
+  return (gameResultMessage.innerText = `Computer chose ${computerChoice}! ${winner} wins!`);
 }
 
 function clearGameOutcome() {
