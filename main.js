@@ -1,8 +1,10 @@
 // EVENT HANDLERS
+var body = document.querySelector('body');
+var headerLinks = document.querySelector('.links');
 var landingPage = document.querySelector('.landing-page');
 var game = document.querySelector('.game');
 var header = document.querySelector('header');
-var easyModeSection = document.querySelector('.easy-mode');
+var howToPlayModal = document.querySelector('.how-to-play-modal');
 var optionsSection = document.querySelector('.options');
 var rockChoice = document.querySelector('.rock');
 var paperChoice = document.querySelector('.paper');
@@ -19,6 +21,7 @@ var homeBtn = document.querySelector('.home-button');
 var gameResultMessage = document.querySelector('.game-result');
 var humanScore = document.querySelector('.human-score');
 var computerScore = document.querySelector('.computer-score');
+var body = document.querySelector('body');
 
 // GLOBAL VARIABLES
 var human = createPlayer('human', '🏋️');
@@ -154,6 +157,10 @@ function newGame() {
 
 // EVENT LISTENERS
 // Click event listeners
+document.addEventListener('click', function (event) {
+  hideHowToPlayModal(event);
+});
+
 landingPage.addEventListener('click', function (event) {
   displayEasyMode(event);
   displayHardMode(event);
@@ -163,6 +170,8 @@ header.addEventListener('click', function (event) {
   hideHeader(event);
   displayEasyMode(event);
   displayHardMode(event);
+  displayHowToPlayModal(event);
+  // hideHowToPlayModal(event);
 });
 
 game.addEventListener('click', function (event) {
@@ -305,6 +314,22 @@ function hideHeader(event) {
   }
 }
 
+function displayHowToPlayModal(event) {
+  if (event.target.classList.contains('how-to-play')) {
+    showElement(howToPlayModal);
+    hideElement(game);
+    header.classList.add('blur');
+  }
+}
+
+function hideHowToPlayModal(event) {
+  if (event.target === headerLinks || event.target === body) {
+    showElement(game);
+    hideElement(howToPlayModal);
+    header.classList.remove('blur');
+  }
+}
+
 // Selecting choices functions
 function displaySelectedChoice(event) {
   if (event.target.closest('section').classList.contains('choice')) {
@@ -379,7 +404,6 @@ function removeAllChoices(event) {
     !event.target.closest('section').classList.contains('options') &&
     !event.target.classList.contains('play-btn')
   ) {
-    console.log('hi');
     resetOptions();
   }
 }
