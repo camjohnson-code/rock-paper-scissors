@@ -126,6 +126,8 @@ function takeTurn() {
     displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
   if (humanChoice === 'water' && computerChoice === 'scissors')
     displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+
+  showComputerChoice(computerChoice, humanChoice);
 }
 
 function updateHumanScore() {
@@ -171,7 +173,6 @@ header.addEventListener('click', function (event) {
   displayEasyMode(event);
   displayHardMode(event);
   displayHowToPlayModal(event);
-  // hideHowToPlayModal(event);
 });
 
 game.addEventListener('click', function (event) {
@@ -183,6 +184,7 @@ playBtn.addEventListener('click', function (event) {
   takeTurn();
   updateComputerScore();
   updateHumanScore();
+  showComputerChoice();
   newGame();
 });
 
@@ -330,6 +332,20 @@ function hideHowToPlayModal(event) {
   }
 }
 
+function showComputerChoice(computerChoice, humanChoice) {
+  var allChoices = document.querySelectorAll('.choice');
+
+  if (computerChoice !== humanChoice) {
+    for (i = 0; i < allChoices.length; i++) {
+      if (
+        !allChoices[i].classList.contains(computerChoice) &&
+        !allChoices[i].classList.contains(humanChoice)
+      )
+        hideElement(allChoices[i]);
+    }
+  }
+}
+
 // Selecting choices functions
 function displaySelectedChoice(event) {
   if (event.target.closest('section').classList.contains('choice')) {
@@ -411,20 +427,24 @@ function removeAllChoices(event) {
 function resetOptions() {
   var allChoices = document.querySelectorAll('.choice');
 
-  for (let j = 0; j < allChoices.length; j++) {
-    allChoices[j].classList.remove('choice-selected');
+  for (i = 0; i < allChoices.length; i++) {
+    allChoices[i].classList.remove('choice-selected');
   }
 
-  hideElement(gradientSVG[0]);
-  hideElement(gradientSVG[1]);
-  hideElement(gradientSVG[2]);
-  hideElement(gradientSVG[3]);
-  hideElement(gradientSVG[4]);
-  showElement(whiteSVG[0]);
-  showElement(whiteSVG[1]);
-  showElement(whiteSVG[2]);
-  showElement(whiteSVG[3]);
-  showElement(whiteSVG[4]);
+  for (j = 0; j < 5; j++) {
+    hideElement(gradientSVG[j]);
+    showElement(whiteSVG[j]);
+  }
+
+  if (!isEasyMode) {
+    var length = 5;
+  } else {
+    var length = 3;
+  }
+
+  for (k = 0; k < length; k++) {
+    showElement(allChoices[k]);
+  }
 }
 
 // Game outcome functions
