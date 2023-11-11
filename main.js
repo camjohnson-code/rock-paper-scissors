@@ -330,7 +330,7 @@ function hideHowToPlayModal(event) {
     hideElement(howToPlayModal);
     header.classList.remove('blur');
   }
-}
+} 
 
 function showComputerChoice(computerChoice, humanChoice) {
   var allChoices = document.querySelectorAll('.choice');
