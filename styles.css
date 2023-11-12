@@ -292,7 +292,6 @@ footer img {
 @media screen and (max-width: 1440px) {
   .links li {
     margin: 0 25px;
-    font-size: 18px;
   }
 
   .scoreboard-player h2 {
