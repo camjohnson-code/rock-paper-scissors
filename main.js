@@ -24,8 +24,8 @@ var computerScore = document.querySelector('.computer-score');
 var body = document.querySelector('body');
 
 // GLOBAL VARIABLES
-var human = createPlayer('human', '🏋️');
-var computer = createPlayer('computer', '🤖');
+var human = createPlayer('human');
+var computer = createPlayer('computer');
 var easyModeChoices = ['rock', 'paper', 'scissors'];
 var hardModeChoices = ['rock', 'paper', 'scissors', 'fire', 'water'];
 var isEasyMode = true;
@@ -33,10 +33,9 @@ var isEasyMode = true;
 // createGame(human, computer);
 
 // DATA MODEL
-function createPlayer(name, token) {
+function createPlayer(name) {
   return {
     name: name,
-    token: token,
     easyWins: 0,
     hardWins: 0,
   };
@@ -50,112 +49,6 @@ function createPlayer(name, token) {
 
 //   return game;
 // }
-
-function addToScore(winner) {
-  if (isEasyMode) {
-    winner.easyWins += 1;
-  } else {
-    winner.hardWins += 1;
-  }
-  return winner;
-}
-
-function generateChoice() {
-  if (isEasyMode) {
-    var choice = easyModeChoices[generateRandomNumber(easyModeChoices)];
-  } else {
-    var choice = hardModeChoices[generateRandomNumber(hardModeChoices)];
-  }
-  return choice;
-}
-
-function determineHumanChoice() {
-  var allChoices = Array.from(optionsSection.children);
-  var humanChoice = '';
-
-  for (i = 0; i < allChoices.length; i++) {
-    if (allChoices[i].classList.contains('choice-selected'))
-      humanChoice = allChoices[i].classList.item(0);
-  }
-
-  return humanChoice;
-}
-
-function takeTurn() {
-  var computerChoice = generateChoice();
-  var humanChoice = determineHumanChoice();
-
-  if (humanChoice === computerChoice) displayGameOutcome();
-  if (humanChoice === 'rock' && computerChoice === 'scissors')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'rock' && computerChoice === 'water')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'rock' && computerChoice === 'paper')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'rock' && computerChoice === 'fire')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'paper' && computerChoice === 'rock')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'paper' && computerChoice === 'water')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'paper' && computerChoice === 'scissors')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'paper' && computerChoice === 'fire')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'scissors' && computerChoice === 'paper')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'scissors' && computerChoice === 'water')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'scissors' && computerChoice === 'rock')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'scissors' && computerChoice === 'fire')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'fire' && computerChoice === 'paper')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'fire' && computerChoice === 'rock')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'fire' && computerChoice === 'scissors')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'fire' && computerChoice === 'water')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'water' && computerChoice === 'fire')
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
-  if (humanChoice === 'water' && computerChoice === 'rock')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'water' && computerChoice === 'paper')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-  if (humanChoice === 'water' && computerChoice === 'scissors')
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
-
-  showComputerChoice(computerChoice, humanChoice);
-}
-
-function updateHumanScore() {
-  humanScore.innerText = '';
-  if (isEasyMode) {
-    humanScore.innerText = `${human.easyWins}`;
-  } else {
-    humanScore.innerText = `${human.hardWins}`;
-  }
-  return humanScore;
-}
-
-function updateComputerScore() {
-  computerScore.innerText = '';
-  if (isEasyMode) {
-    computerScore.innerText = `${computer.easyWins}`;
-  } else {
-    computerScore.innerText = `${computer.hardWins}`;
-  }
-  return computerScore;
-}
-
-function newGame() {
-  setTimeout(function () {
-    clearGameOutcome();
-    resetOptions();
-  }, 2000);
-}
 
 // EVENT LISTENERS
 // Click event listeners
@@ -273,6 +166,105 @@ function generateRandomNumber(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+// Game functions
+function generateChoice() {
+  if (isEasyMode) {
+    var choice = easyModeChoices[generateRandomNumber(easyModeChoices)];
+  } else {
+    var choice = hardModeChoices[generateRandomNumber(hardModeChoices)];
+  }
+  return choice;
+}
+
+function determineHumanChoice() {
+  var allChoices = Array.from(optionsSection.children);
+  var humanChoice = '';
+
+  for (i = 0; i < allChoices.length; i++) {
+    if (allChoices[i].classList.contains('choice-selected'))
+      humanChoice = allChoices[i].classList.item(0);
+  }
+
+  return humanChoice;
+}
+
+function takeTurn() {
+  var computerChoice = generateChoice();
+  var humanChoice = determineHumanChoice();
+
+  if (humanChoice === computerChoice) displayGameOutcome();
+  if (
+    (humanChoice === 'rock' && computerChoice === 'scissors') ||
+    (humanChoice === 'rock' && computerChoice === 'water') ||
+    (humanChoice === 'paper' && computerChoice === 'rock') ||
+    (humanChoice === 'paper' && computerChoice === 'water') ||
+    (humanChoice === 'scissors' && computerChoice === 'paper') ||
+    (humanChoice === 'scissors' && computerChoice === 'water') ||
+    (humanChoice === 'fire' && computerChoice === 'paper') ||
+    (humanChoice === 'fire' && computerChoice === 'rock') ||
+    (humanChoice === 'fire' && computerChoice === 'scissors') ||
+    (humanChoice === 'water' && computerChoice === 'fire')
+  )
+    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+  if (
+    (humanChoice === 'rock' && computerChoice === 'paper') ||
+    (humanChoice === 'rock' && computerChoice === 'fire') ||
+    (humanChoice === 'paper' && computerChoice === 'scissors') ||
+    (humanChoice === 'paper' && computerChoice === 'fire') ||
+    (humanChoice === 'scissors' && computerChoice === 'rock') ||
+    (humanChoice === 'scissors' && computerChoice === 'fire') ||
+    (humanChoice === 'fire' && computerChoice === 'water') ||
+    (humanChoice === 'water' && computerChoice === 'rock') ||
+    (humanChoice === 'water' && computerChoice === 'paper') ||
+    (humanChoice === 'water' && computerChoice === 'scissors')
+  )
+    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+
+  showComputerChoice(computerChoice, humanChoice);
+}
+
+function updateHumanScore() {
+  humanScore.innerText = '';
+  if (isEasyMode) {
+    humanScore.innerText = `${human.easyWins}`;
+  } else {
+    humanScore.innerText = `${human.hardWins}`;
+  }
+  return humanScore;
+}
+
+function updateComputerScore() {
+  computerScore.innerText = '';
+  if (isEasyMode) {
+    computerScore.innerText = `${computer.easyWins}`;
+  } else {
+    computerScore.innerText = `${computer.hardWins}`;
+  }
+  return computerScore;
+}
+
+function addToScore(winner) {
+  if (isEasyMode) {
+    winner.easyWins += 1;
+  } else {
+    winner.hardWins += 1;
+  }
+  return winner;
+}
+
+function displayGameOutcome(computerChoice, winner) {
+  if (!winner)
+    return (gameResultMessage.innerText = `Nobody wins! It's a tie!`);
+  return (gameResultMessage.innerText = `Computer chose ${computerChoice}! ${winner} wins!`);
+}
+
+function newGame() {
+  setTimeout(function () {
+    clearGameOutcome();
+    resetOptions();
+  }, 2000);
+}
+
 // Dom manipulation functions
 function displayEasyMode(event) {
   if (event.target.classList.contains('easy-mode-button')) {
@@ -330,7 +322,7 @@ function hideHowToPlayModal(event) {
     hideElement(howToPlayModal);
     header.classList.remove('blur');
   }
-} 
+}
 
 function showComputerChoice(computerChoice, humanChoice) {
   var allChoices = document.querySelectorAll('.choice');
@@ -344,6 +336,10 @@ function showComputerChoice(computerChoice, humanChoice) {
         hideElement(allChoices[i]);
     }
   }
+}
+
+function clearGameOutcome() {
+  return (gameResultMessage.innerText = ``);
 }
 
 // Selecting choices functions
@@ -417,7 +413,6 @@ function displaySelectedChoice(event) {
 function removeAllChoices(event) {
   if (
     !event.target.closest('section').classList.contains('choice') &&
-    !event.target.closest('section').classList.contains('options') &&
     !event.target.classList.contains('play-btn')
   ) {
     resetOptions();
@@ -445,15 +440,4 @@ function resetOptions() {
   for (k = 0; k < length; k++) {
     showElement(allChoices[k]);
   }
-}
-
-// Game outcome functions
-function displayGameOutcome(computerChoice, winner) {
-  if (!winner)
-    return (gameResultMessage.innerText = `Nobody wins! It's a tie!`);
-  return (gameResultMessage.innerText = `Computer chose ${computerChoice}! ${winner} wins!`);
-}
-
-function clearGameOutcome() {
-  return (gameResultMessage.innerText = ``);
 }
