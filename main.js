@@ -24,13 +24,12 @@ var computerScore = document.querySelector('.computer-score');
 var body = document.querySelector('body');
 
 // GLOBAL VARIABLES
-var human = createPlayer('human');
-var computer = createPlayer('computer');
 var easyModeChoices = ['rock', 'paper', 'scissors'];
 var hardModeChoices = ['rock', 'paper', 'scissors', 'fire', 'water'];
+var computer = createPlayer('computer');
+var human = createPlayer('human');
 var isEasyMode = true;
 
-// createGame(human, computer);
 
 // DATA MODEL
 function createPlayer(name) {
@@ -38,17 +37,9 @@ function createPlayer(name) {
     name: name,
     easyWins: 0,
     hardWins: 0,
+    choice: ''
   };
 }
-
-// function createGame(player1, player2) {
-//   var game = {
-//     human: player1,
-//     computer: player2,
-//   };
-
-//   return game;
-// }
 
 // EVENT LISTENERS
 // Click event listeners
@@ -75,8 +66,8 @@ game.addEventListener('click', function (event) {
 
 playBtn.addEventListener('click', function (event) {
   takeTurn();
-  updateComputerScore();
-  updateHumanScore();
+  updateScores(humanScore, human);
+  updateScores(computerScore, computer);
   showComputerChoice();
   newGame();
 });
@@ -173,7 +164,9 @@ function generateChoice() {
   } else {
     var choice = hardModeChoices[generateRandomNumber(hardModeChoices)];
   }
-  return choice;
+
+  computer.choice = choice;
+  return computer;
 }
 
 function determineHumanChoice() {
@@ -185,62 +178,43 @@ function determineHumanChoice() {
       humanChoice = allChoices[i].classList.item(0);
   }
 
-  return humanChoice;
+  human.choice = humanChoice;
+  return human;
 }
 
 function takeTurn() {
-  var computerChoice = generateChoice();
-  var humanChoice = determineHumanChoice();
+  determineHumanChoice();
+  generateChoice();
 
-  if (humanChoice === computerChoice) displayGameOutcome();
+  if (human.choice === computer.choice) displayGameOutcome();
   if (
-    (humanChoice === 'rock' && computerChoice === 'scissors') ||
-    (humanChoice === 'rock' && computerChoice === 'water') ||
-    (humanChoice === 'paper' && computerChoice === 'rock') ||
-    (humanChoice === 'paper' && computerChoice === 'water') ||
-    (humanChoice === 'scissors' && computerChoice === 'paper') ||
-    (humanChoice === 'scissors' && computerChoice === 'water') ||
-    (humanChoice === 'fire' && computerChoice === 'paper') ||
-    (humanChoice === 'fire' && computerChoice === 'rock') ||
-    (humanChoice === 'fire' && computerChoice === 'scissors') ||
-    (humanChoice === 'water' && computerChoice === 'fire')
+    (human.choice === 'rock' && computer.choice === 'scissors') ||
+    (human.choice === 'rock' && computer.choice === 'water') ||
+    (human.choice === 'paper' && computer.choice === 'rock') ||
+    (human.choice === 'paper' && computer.choice === 'water') ||
+    (human.choice === 'scissors' && computer.choice === 'paper') ||
+    (human.choice === 'scissors' && computer.choice === 'water') ||
+    (human.choice === 'fire' && computer.choice === 'paper') ||
+    (human.choice === 'fire' && computer.choice === 'rock') ||
+    (human.choice === 'fire' && computer.choice === 'scissors') ||
+    (human.choice === 'water' && computer.choice === 'fire')
   )
-    displayGameOutcome(computerChoice, 'Player'), addToScore(human);
+    displayGameOutcome(computer.choice, 'Player'), addToScore(human);
   if (
-    (humanChoice === 'rock' && computerChoice === 'paper') ||
-    (humanChoice === 'rock' && computerChoice === 'fire') ||
-    (humanChoice === 'paper' && computerChoice === 'scissors') ||
-    (humanChoice === 'paper' && computerChoice === 'fire') ||
-    (humanChoice === 'scissors' && computerChoice === 'rock') ||
-    (humanChoice === 'scissors' && computerChoice === 'fire') ||
-    (humanChoice === 'fire' && computerChoice === 'water') ||
-    (humanChoice === 'water' && computerChoice === 'rock') ||
-    (humanChoice === 'water' && computerChoice === 'paper') ||
-    (humanChoice === 'water' && computerChoice === 'scissors')
+    (human.choice === 'rock' && computer.choice === 'paper') ||
+    (human.choice === 'rock' && computer.choice === 'fire') ||
+    (human.choice === 'paper' && computer.choice === 'scissors') ||
+    (human.choice === 'paper' && computer.choice === 'fire') ||
+    (human.choice === 'scissors' && computer.choice === 'rock') ||
+    (human.choice === 'scissors' && computer.choice === 'fire') ||
+    (human.choice === 'fire' && computer.choice === 'water') ||
+    (human.choice === 'water' && computer.choice === 'rock') ||
+    (human.choice === 'water' && computer.choice === 'paper') ||
+    (human.choice === 'water' && computer.choice === 'scissors')
   )
-    displayGameOutcome(computerChoice, 'Computer'), addToScore(computer);
+    displayGameOutcome(computer.choice, 'Computer'), addToScore(computer);
 
-  showComputerChoice(computerChoice, humanChoice);
-}
-
-function updateHumanScore() {
-  humanScore.innerText = '';
-  if (isEasyMode) {
-    humanScore.innerText = `${human.easyWins}`;
-  } else {
-    humanScore.innerText = `${human.hardWins}`;
-  }
-  return humanScore;
-}
-
-function updateComputerScore() {
-  computerScore.innerText = '';
-  if (isEasyMode) {
-    computerScore.innerText = `${computer.easyWins}`;
-  } else {
-    computerScore.innerText = `${computer.hardWins}`;
-  }
-  return computerScore;
+  showComputerChoice(computer.choice, human.choice);
 }
 
 function addToScore(winner) {
@@ -250,6 +224,16 @@ function addToScore(winner) {
     winner.hardWins += 1;
   }
   return winner;
+}
+
+function updateScores(userScore, user) {
+  userScore.innerText = '';
+  if (isEasyMode) {
+    userScore.innerText = `${user.easyWins}`;
+  } else {
+    userScore.innerText = `${user.hardWins}`;
+  }
+  return userScore;
 }
 
 function displayGameOutcome(computerChoice, winner) {
@@ -342,7 +326,7 @@ function clearGameOutcome() {
   return (gameResultMessage.innerText = ``);
 }
 
-// Selecting choices functions
+// Highlighting choices functions
 function displaySelectedChoice(event) {
   if (event.target.closest('section').classList.contains('choice')) {
     var isChoiceElement = event.target.closest('.choice');
@@ -359,6 +343,7 @@ function displaySelectedChoice(event) {
         showElement(whiteSVG[2]);
         showElement(whiteSVG[3]);
         showElement(whiteSVG[4]);
+        hideElement(whiteSVG[0]);
         hideElement(gradientSVG[1]);
         hideElement(gradientSVG[2]);
         hideElement(gradientSVG[3]);
@@ -369,6 +354,7 @@ function displaySelectedChoice(event) {
         showElement(whiteSVG[2]);
         showElement(whiteSVG[3]);
         showElement(whiteSVG[4]);
+        hideElement(whiteSVG[1]);
         hideElement(gradientSVG[0]);
         hideElement(gradientSVG[2]);
         hideElement(gradientSVG[3]);
@@ -379,6 +365,7 @@ function displaySelectedChoice(event) {
         showElement(whiteSVG[1]);
         showElement(whiteSVG[3]);
         showElement(whiteSVG[4]);
+        hideElement(whiteSVG[2]);
         hideElement(gradientSVG[0]);
         hideElement(gradientSVG[1]);
         hideElement(gradientSVG[3]);
@@ -389,6 +376,7 @@ function displaySelectedChoice(event) {
         showElement(whiteSVG[1]);
         showElement(whiteSVG[2]);
         showElement(whiteSVG[4]);
+        hideElement(whiteSVG[3]);
         hideElement(gradientSVG[0]);
         hideElement(gradientSVG[1]);
         hideElement(gradientSVG[2]);
@@ -399,6 +387,7 @@ function displaySelectedChoice(event) {
         showElement(whiteSVG[1]);
         showElement(whiteSVG[2]);
         showElement(whiteSVG[3]);
+        hideElement(whiteSVG[4]);
         hideElement(gradientSVG[0]);
         hideElement(gradientSVG[1]);
         hideElement(gradientSVG[2]);
