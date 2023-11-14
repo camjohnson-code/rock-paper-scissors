@@ -35,7 +35,6 @@ Hard mode:
 I plan to enhance the game further with the following features:
 
 - Multiplayer Mode: Allowing users to play against each other online.
-- Local Storage: Adding the scores to Local Storage so they remain on page refresh.
 - Animations: Adding visual flair to make the game more dynamic.
 
 
