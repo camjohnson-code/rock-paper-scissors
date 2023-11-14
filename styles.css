@@ -295,11 +295,11 @@ footer img {
   }
 
   .scoreboard-player h2 {
-    font-size: 55px;
+    font-size: 45px;
   }
 
   .scoreboard p {
-    font-size: 35px;
+    font-size: 30px;
   }
 
   .game-result {
@@ -317,7 +317,7 @@ footer img {
   .scissors,
   .fire,
   .water {
-    width: 16vw;
+    width: 13vw;
   }
 
   .rock svg,
@@ -325,13 +325,13 @@ footer img {
   .scissors svg,
   .fire svg,
   .water svg {
-    width: 140px;
+    width: 120px;
     height: auto;
     aspect-ratio: 1 / 1;
   }
 
   .options h2 {
-    font-size: 35px;
+    font-size: 30px;
   }
 
   .play-btn {
@@ -730,7 +730,6 @@ footer img {
   .fire,
   .water {
     width: 30vw;
-    margin: 10px 0;
   }
 
   .rock svg,
@@ -738,13 +737,13 @@ footer img {
   .scissors svg,
   .fire svg,
   .water svg {
-    width: 60px;
+    width: 50px;
     height: auto;
     aspect-ratio: 1 / 1;
   }
 
   .options h2 {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .play-btn {
