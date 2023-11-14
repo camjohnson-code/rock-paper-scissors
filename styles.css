@@ -339,6 +339,17 @@ footer img {
   }
 }
 
+@media screen and (max-width: 1398px) {
+  .how-to-play-title {
+    display: none;
+  }
+
+  .explanation {
+    width: 100%;
+    font-size: 20px;
+  }
+}
+
 @media screen and (max-width: 1163px) {
   .btn {
     font-size: 18px;
@@ -347,15 +358,6 @@ footer img {
   .links li {
     margin: 0 25px;
     font-size: 15px;
-  }
-
-  .how-to-play-title {
-    display: none;
-  }
-
-  .explanation {
-    width: 100%;
-    font-size: 20px;
   }
 
   .scoreboard-player h2 {
