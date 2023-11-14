@@ -160,6 +160,18 @@ function generateRandomNumber(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+function showGradients(element) {
+  for (i = 0; i < 5; i++) {
+    showElement(element[i]);
+  }
+}
+
+function hideGradients(element) {
+  for (i = 0; i < 5; i++) {
+    hideElement(element[i]);
+  }
+}
+
 // Game functions
 function generateChoice() {
   if (isEasyMode) {
@@ -225,7 +237,7 @@ function takeTurn() {
 
 function addToScore(winner) {
   var userData = JSON.parse(localStorage.getItem(winner));
-  
+
   if (isEasyMode) {
     userData.easyWins += 1;
   } else {
@@ -357,60 +369,30 @@ function displaySelectedChoice(event) {
     }
 
     if (isChoiceElement.classList.contains('rock')) {
-      showElement(gradientSVG[0]);
-      showElement(whiteSVG[1]);
-      showElement(whiteSVG[2]);
-      showElement(whiteSVG[3]);
-      showElement(whiteSVG[4]);
+      hideGradients(gradientSVG);
+      showGradients(whiteSVG);
       hideElement(whiteSVG[0]);
-      hideElement(gradientSVG[1]);
-      hideElement(gradientSVG[2]);
-      hideElement(gradientSVG[3]);
-      hideElement(gradientSVG[4]);
+      showElement(gradientSVG[0]);
     } else if (isChoiceElement.classList.contains('paper')) {
+      hideGradients(gradientSVG);
+      showGradients(whiteSVG);
       showElement(gradientSVG[1]);
-      showElement(whiteSVG[0]);
-      showElement(whiteSVG[2]);
-      showElement(whiteSVG[3]);
-      showElement(whiteSVG[4]);
       hideElement(whiteSVG[1]);
-      hideElement(gradientSVG[0]);
-      hideElement(gradientSVG[2]);
-      hideElement(gradientSVG[3]);
-      hideElement(gradientSVG[4]);
     } else if (isChoiceElement.classList.contains('scissors')) {
+      hideGradients(gradientSVG);
+      showGradients(whiteSVG);
       showElement(gradientSVG[2]);
-      showElement(whiteSVG[0]);
-      showElement(whiteSVG[1]);
-      showElement(whiteSVG[3]);
-      showElement(whiteSVG[4]);
       hideElement(whiteSVG[2]);
-      hideElement(gradientSVG[0]);
-      hideElement(gradientSVG[1]);
-      hideElement(gradientSVG[3]);
-      hideElement(gradientSVG[4]);
     } else if (isChoiceElement.classList.contains('fire')) {
+      hideGradients(gradientSVG);
+      showGradients(whiteSVG);
       showElement(gradientSVG[3]);
-      showElement(whiteSVG[0]);
-      showElement(whiteSVG[1]);
-      showElement(whiteSVG[2]);
-      showElement(whiteSVG[4]);
       hideElement(whiteSVG[3]);
-      hideElement(gradientSVG[0]);
-      hideElement(gradientSVG[1]);
-      hideElement(gradientSVG[2]);
-      hideElement(gradientSVG[4]);
     } else {
+      hideGradients(gradientSVG);
+      showGradients(whiteSVG);
       showElement(gradientSVG[4]);
-      showElement(whiteSVG[0]);
-      showElement(whiteSVG[1]);
-      showElement(whiteSVG[2]);
-      showElement(whiteSVG[3]);
       hideElement(whiteSVG[4]);
-      hideElement(gradientSVG[0]);
-      hideElement(gradientSVG[1]);
-      hideElement(gradientSVG[2]);
-      hideElement(gradientSVG[3]);
     }
 
     isChoiceElement.classList.add('choice-selected');
