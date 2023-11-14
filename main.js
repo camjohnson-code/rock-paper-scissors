@@ -30,14 +30,13 @@ var computer = createPlayer('computer');
 var human = createPlayer('human');
 var isEasyMode = true;
 
-
 // DATA MODEL
 function createPlayer(name) {
   return {
     name: name,
     easyWins: 0,
     hardWins: 0,
-    choice: ''
+    choice: '',
   };
 }
 
@@ -65,10 +64,14 @@ game.addEventListener('click', function (event) {
 });
 
 playBtn.addEventListener('click', function (event) {
+  if (!localStorage.getItem('human')) {
+    addToLocalStorage();
+  }
+
   takeTurn();
-  updateScores(humanScore, human);
-  updateScores(computerScore, computer);
-  showComputerChoice();
+  updateScores(humanScore, 'human');
+  updateScores(computerScore, 'computer');
+  showChoices(computer.choice, human.choice);
   newGame();
 });
 
@@ -182,6 +185,11 @@ function determineHumanChoice() {
   return human;
 }
 
+function addToLocalStorage() {
+  localStorage.setItem('human', JSON.stringify(human));
+  localStorage.setItem('computer', JSON.stringify(computer));
+}
+
 function takeTurn() {
   determineHumanChoice();
   generateChoice();
@@ -199,7 +207,7 @@ function takeTurn() {
     (human.choice === 'fire' && computer.choice === 'scissors') ||
     (human.choice === 'water' && computer.choice === 'fire')
   )
-    displayGameOutcome(computer.choice, 'Player'), addToScore(human);
+    displayGameOutcome(computer.choice, 'Player'), addToScore('human');
   if (
     (human.choice === 'rock' && computer.choice === 'paper') ||
     (human.choice === 'rock' && computer.choice === 'fire') ||
@@ -212,26 +220,30 @@ function takeTurn() {
     (human.choice === 'water' && computer.choice === 'paper') ||
     (human.choice === 'water' && computer.choice === 'scissors')
   )
-    displayGameOutcome(computer.choice, 'Computer'), addToScore(computer);
-
-  showComputerChoice(computer.choice, human.choice);
+    displayGameOutcome(computer.choice, 'Computer'), addToScore('computer');
 }
 
 function addToScore(winner) {
+  var userData = JSON.parse(localStorage.getItem(winner));
+  
   if (isEasyMode) {
-    winner.easyWins += 1;
+    userData.easyWins += 1;
   } else {
-    winner.hardWins += 1;
+    userData.hardWins += 1;
   }
+
+  localStorage.setItem(winner, JSON.stringify(userData));
   return winner;
 }
 
 function updateScores(userScore, user) {
   userScore.innerText = '';
+  var userData = JSON.parse(localStorage.getItem(user));
+
   if (isEasyMode) {
-    userScore.innerText = `${user.easyWins}`;
+    userScore.innerText = `${userData.easyWins}`;
   } else {
-    userScore.innerText = `${user.hardWins}`;
+    userScore.innerText = `${userData.hardWins}`;
   }
   return userScore;
 }
@@ -262,8 +274,12 @@ function displayEasyMode(event) {
     hideElement(howToPlayBtn);
     isEasyMode = true;
     optionsSection.classList.remove('hard-mode');
-    humanScore.innerText = `${human.easyWins}`;
-    computerScore.innerText = `${computer.easyWins}`;
+    humanScore.innerText = `${
+      JSON.parse(localStorage.getItem('human')).easyWins
+    }`;
+    computerScore.innerText = `${
+      JSON.parse(localStorage.getItem('computer')).easyWins
+    }`;
   }
 }
 
@@ -279,8 +295,12 @@ function displayHardMode(event) {
     hideElement(hardModeBtn);
     isEasyMode = false;
     optionsSection.classList.add('hard-mode');
-    humanScore.innerText = `${human.hardWins}`;
-    computerScore.innerText = `${computer.hardWins}`;
+    humanScore.innerText = `${
+      JSON.parse(localStorage.getItem('human')).hardWins
+    }`;
+    computerScore.innerText = `${
+      JSON.parse(localStorage.getItem('computer')).hardWins
+    }`;
   }
 }
 
@@ -308,7 +328,7 @@ function hideHowToPlayModal(event) {
   }
 }
 
-function showComputerChoice(computerChoice, humanChoice) {
+function showChoices(computerChoice, humanChoice) {
   var allChoices = document.querySelectorAll('.choice');
 
   if (computerChoice !== humanChoice) {
@@ -332,70 +352,68 @@ function displaySelectedChoice(event) {
     var isChoiceElement = event.target.closest('.choice');
     var allChoices = document.querySelectorAll('.choice');
 
-    if (isChoiceElement) {
-      for (let i = 0; i < allChoices.length; i++) {
-        allChoices[i].classList.remove('choice-selected');
-      }
-
-      if (isChoiceElement.classList.contains('rock')) {
-        showElement(gradientSVG[0]);
-        showElement(whiteSVG[1]);
-        showElement(whiteSVG[2]);
-        showElement(whiteSVG[3]);
-        showElement(whiteSVG[4]);
-        hideElement(whiteSVG[0]);
-        hideElement(gradientSVG[1]);
-        hideElement(gradientSVG[2]);
-        hideElement(gradientSVG[3]);
-        hideElement(gradientSVG[4]);
-      } else if (isChoiceElement.classList.contains('paper')) {
-        showElement(gradientSVG[1]);
-        showElement(whiteSVG[0]);
-        showElement(whiteSVG[2]);
-        showElement(whiteSVG[3]);
-        showElement(whiteSVG[4]);
-        hideElement(whiteSVG[1]);
-        hideElement(gradientSVG[0]);
-        hideElement(gradientSVG[2]);
-        hideElement(gradientSVG[3]);
-        hideElement(gradientSVG[4]);
-      } else if (isChoiceElement.classList.contains('scissors')) {
-        showElement(gradientSVG[2]);
-        showElement(whiteSVG[0]);
-        showElement(whiteSVG[1]);
-        showElement(whiteSVG[3]);
-        showElement(whiteSVG[4]);
-        hideElement(whiteSVG[2]);
-        hideElement(gradientSVG[0]);
-        hideElement(gradientSVG[1]);
-        hideElement(gradientSVG[3]);
-        hideElement(gradientSVG[4]);
-      } else if (isChoiceElement.classList.contains('fire')) {
-        showElement(gradientSVG[3]);
-        showElement(whiteSVG[0]);
-        showElement(whiteSVG[1]);
-        showElement(whiteSVG[2]);
-        showElement(whiteSVG[4]);
-        hideElement(whiteSVG[3]);
-        hideElement(gradientSVG[0]);
-        hideElement(gradientSVG[1]);
-        hideElement(gradientSVG[2]);
-        hideElement(gradientSVG[4]);
-      } else {
-        showElement(gradientSVG[4]);
-        showElement(whiteSVG[0]);
-        showElement(whiteSVG[1]);
-        showElement(whiteSVG[2]);
-        showElement(whiteSVG[3]);
-        hideElement(whiteSVG[4]);
-        hideElement(gradientSVG[0]);
-        hideElement(gradientSVG[1]);
-        hideElement(gradientSVG[2]);
-        hideElement(gradientSVG[3]);
-      }
-
-      isChoiceElement.classList.add('choice-selected');
+    for (let i = 0; i < allChoices.length; i++) {
+      allChoices[i].classList.remove('choice-selected');
     }
+
+    if (isChoiceElement.classList.contains('rock')) {
+      showElement(gradientSVG[0]);
+      showElement(whiteSVG[1]);
+      showElement(whiteSVG[2]);
+      showElement(whiteSVG[3]);
+      showElement(whiteSVG[4]);
+      hideElement(whiteSVG[0]);
+      hideElement(gradientSVG[1]);
+      hideElement(gradientSVG[2]);
+      hideElement(gradientSVG[3]);
+      hideElement(gradientSVG[4]);
+    } else if (isChoiceElement.classList.contains('paper')) {
+      showElement(gradientSVG[1]);
+      showElement(whiteSVG[0]);
+      showElement(whiteSVG[2]);
+      showElement(whiteSVG[3]);
+      showElement(whiteSVG[4]);
+      hideElement(whiteSVG[1]);
+      hideElement(gradientSVG[0]);
+      hideElement(gradientSVG[2]);
+      hideElement(gradientSVG[3]);
+      hideElement(gradientSVG[4]);
+    } else if (isChoiceElement.classList.contains('scissors')) {
+      showElement(gradientSVG[2]);
+      showElement(whiteSVG[0]);
+      showElement(whiteSVG[1]);
+      showElement(whiteSVG[3]);
+      showElement(whiteSVG[4]);
+      hideElement(whiteSVG[2]);
+      hideElement(gradientSVG[0]);
+      hideElement(gradientSVG[1]);
+      hideElement(gradientSVG[3]);
+      hideElement(gradientSVG[4]);
+    } else if (isChoiceElement.classList.contains('fire')) {
+      showElement(gradientSVG[3]);
+      showElement(whiteSVG[0]);
+      showElement(whiteSVG[1]);
+      showElement(whiteSVG[2]);
+      showElement(whiteSVG[4]);
+      hideElement(whiteSVG[3]);
+      hideElement(gradientSVG[0]);
+      hideElement(gradientSVG[1]);
+      hideElement(gradientSVG[2]);
+      hideElement(gradientSVG[4]);
+    } else {
+      showElement(gradientSVG[4]);
+      showElement(whiteSVG[0]);
+      showElement(whiteSVG[1]);
+      showElement(whiteSVG[2]);
+      showElement(whiteSVG[3]);
+      hideElement(whiteSVG[4]);
+      hideElement(gradientSVG[0]);
+      hideElement(gradientSVG[1]);
+      hideElement(gradientSVG[2]);
+      hideElement(gradientSVG[3]);
+    }
+
+    isChoiceElement.classList.add('choice-selected');
   }
 }
 
