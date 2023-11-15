@@ -11,11 +11,8 @@ One of the hardest challenges I faced was the implementation of the logo color c
 - Self teaching and implementing media queries for screen size responsiveness.
 
 
-## Setup Instructions
-- Clone the repository to your local machine.
-- In your terminal, `cd` into the directory.
-- Run `open index.html`.
-- Start playing and enjoy the game!
+## Deploy Link
+[Click here to play!](https://camjohnson-code.github.io/rock-paper-scissors/)
 
 ## Demo
 
