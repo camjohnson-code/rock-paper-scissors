@@ -255,6 +255,22 @@ header ul {
   background-color: rgba(255, 255, 255, 1);
 }
 
+.rock:hover .gradient-svg,
+.paper:hover .gradient-svg,
+.scissors:hover .gradient-svg,
+.fire:hover .gradient-svg,
+.water:hover .gradient-svg {
+  display: block;
+}
+
+.rock:hover .white-svg,
+.paper:hover .white-svg,
+.scissors:hover .white-svg,
+.fire:hover .white-svg,
+.water:hover .white-svg {
+  display: none;
+}
+
 .rock:hover h2,
 .paper:hover h2,
 .scissors:hover h2,
