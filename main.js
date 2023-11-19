@@ -30,6 +30,13 @@ var hardModeChoices = ['rock', 'paper', 'scissors', 'fire', 'water'];
 var computer = createPlayer('computer');
 var human = createPlayer('human');
 var isEasyMode = true;
+var winningCombinations = {
+  rock: ['scissors', 'water'],
+  paper: ['rock', 'water'],
+  scissors: ['rock', 'water'],
+  fire: ['rock', 'paper', 'scissors'],
+  water: ['fire'],
+};
 
 // DATA MODEL
 function createPlayer(name) {
@@ -139,32 +146,9 @@ function takeTurn() {
   generateChoice();
 
   if (human.choice === computer.choice) displayGameOutcome();
-  if (
-    (human.choice === 'rock' && computer.choice === 'scissors') ||
-    (human.choice === 'rock' && computer.choice === 'water') ||
-    (human.choice === 'paper' && computer.choice === 'rock') ||
-    (human.choice === 'paper' && computer.choice === 'water') ||
-    (human.choice === 'scissors' && computer.choice === 'paper') ||
-    (human.choice === 'scissors' && computer.choice === 'water') ||
-    (human.choice === 'fire' && computer.choice === 'paper') ||
-    (human.choice === 'fire' && computer.choice === 'rock') ||
-    (human.choice === 'fire' && computer.choice === 'scissors') ||
-    (human.choice === 'water' && computer.choice === 'fire')
-  )
+  else if (winningCombinations[human.choice].includes(computer.choice))
     displayGameOutcome(computer.choice, 'Player'), addToScore('human');
-  if (
-    (human.choice === 'rock' && computer.choice === 'paper') ||
-    (human.choice === 'rock' && computer.choice === 'fire') ||
-    (human.choice === 'paper' && computer.choice === 'scissors') ||
-    (human.choice === 'paper' && computer.choice === 'fire') ||
-    (human.choice === 'scissors' && computer.choice === 'rock') ||
-    (human.choice === 'scissors' && computer.choice === 'fire') ||
-    (human.choice === 'fire' && computer.choice === 'water') ||
-    (human.choice === 'water' && computer.choice === 'rock') ||
-    (human.choice === 'water' && computer.choice === 'paper') ||
-    (human.choice === 'water' && computer.choice === 'scissors')
-  )
-    displayGameOutcome(computer.choice, 'Computer'), addToScore('computer');
+  else displayGameOutcome(computer.choice, 'Computer'), addToScore('computer');
 }
 
 function addToScore(winner) {
@@ -278,11 +262,15 @@ function showChoices(computerChoice, humanChoice) {
     optionsSection.innerHTML = '';
 
     for (i = 0; i < allChoices.length; i++) {
-      allChoices[i].classList.contains(humanChoice) ? optionsSection.appendChild(allChoices[i]) : {};
+      allChoices[i].classList.contains(humanChoice)
+        ? optionsSection.appendChild(allChoices[i])
+        : {};
     }
 
     for (i = 0; i < allChoices.length; i++) {
-      allChoices[i].classList.contains(computerChoice) ? optionsSection.appendChild(allChoices[i]) : {};
+      allChoices[i].classList.contains(computerChoice)
+        ? optionsSection.appendChild(allChoices[i])
+        : {};
     }
   }
 }
