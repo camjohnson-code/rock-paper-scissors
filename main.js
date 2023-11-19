@@ -23,6 +23,7 @@ var gameResultMessage = document.querySelector('.game-result');
 var humanScore = document.querySelector('.human-score');
 var computerScore = document.querySelector('.computer-score');
 var body = document.querySelector('body');
+var footer = document.querySelector('footer');
 
 // GLOBAL VARIABLES
 var easyModeChoices = ['rock', 'paper', 'scissors'];
@@ -245,6 +246,7 @@ function displayHowToPlayModal(event) {
   if (event.target.classList.contains('how-to-play')) {
     showElement(howToPlayModal);
     hideElement(game);
+    hideElement(footer);
     header.classList.add('blur');
   }
 }
@@ -252,6 +254,7 @@ function displayHowToPlayModal(event) {
 function hideHowToPlayModal(event) {
   if (event.target === headerLinks || event.target === body) {
     showElement(game);
+    showElement(footer);
     hideElement(howToPlayModal);
     header.classList.remove('blur');
   }
