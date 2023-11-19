@@ -6,6 +6,7 @@ var game = document.querySelector('.game');
 var header = document.querySelector('header');
 var howToPlayModal = document.querySelector('.how-to-play-modal');
 var optionsSection = document.querySelector('.options');
+var allChoices = document.querySelectorAll('.choice');
 var rockChoice = document.querySelector('.rock');
 var paperChoice = document.querySelector('.paper');
 var scissorsChoice = document.querySelector('.scissors');
@@ -64,6 +65,8 @@ game.addEventListener('click', function (event) {
 });
 
 playBtn.addEventListener('click', function (event) {
+  playBtn.disabled = true;
+
   if (!localStorage.getItem('human')) {
     addToLocalStorage();
   }
@@ -199,6 +202,7 @@ function newGame() {
   setTimeout(function () {
     clearGameOutcome();
     resetOptions();
+    playBtn.disabled = true;
   }, 2000);
 }
 
@@ -270,15 +274,15 @@ function hideHowToPlayModal(event) {
 }
 
 function showChoices(computerChoice, humanChoice) {
-  var allChoices = document.querySelectorAll('.choice');
-
   if (computerChoice !== humanChoice) {
+    optionsSection.innerHTML = '';
+
     for (i = 0; i < allChoices.length; i++) {
-      if (
-        !allChoices[i].classList.contains(computerChoice) &&
-        !allChoices[i].classList.contains(humanChoice)
-      )
-        hideElement(allChoices[i]);
+      allChoices[i].classList.contains(humanChoice) ? optionsSection.appendChild(allChoices[i]) : {};
+    }
+
+    for (i = 0; i < allChoices.length; i++) {
+      allChoices[i].classList.contains(computerChoice) ? optionsSection.appendChild(allChoices[i]) : {};
     }
   }
 }
@@ -292,6 +296,8 @@ function displaySelectedChoice(event) {
   if (event.target.closest('section').classList.contains('choice')) {
     var isChoiceElement = event.target.closest('.choice');
     var allChoices = document.querySelectorAll('.choice');
+
+    playBtn.disabled = false;
 
     for (let i = 0; i < allChoices.length; i++) {
       allChoices[i].classList.remove('choice-selected');
@@ -338,9 +344,8 @@ function removeAllChoices(event) {
 }
 
 function resetOptions() {
-  var allChoices = document.querySelectorAll('.choice');
-
   for (i = 0; i < allChoices.length; i++) {
+    optionsSection.appendChild(allChoices[i]);
     allChoices[i].classList.remove('choice-selected');
   }
 
