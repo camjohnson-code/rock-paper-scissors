@@ -159,6 +159,10 @@ header ul {
   cursor: pointer;
 }
 
+.btn:active {
+  transform: translateY(4px);
+}
+
 .game {
   display: flex;
   flex-direction: column;
