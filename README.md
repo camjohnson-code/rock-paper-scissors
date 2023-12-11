@@ -20,11 +20,11 @@ Click each gif to be redirected to a short video example.
 
 Easy mode: 
 
-[![Easy Mode](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTV0YzBzMnlzazZpOTExOWlmeHM5ZHZzeWN3aDd5Y3c1aDhjc3JtdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wqrz0qw9EfkB5npWea/giphy.gif)](https://www.loom.com/share/4cfe76a291924908af199b7a64a82c62?sid=528286e8-b273-4715-9c84-b7c968d4ae70)
+[![Easy Mode](https://media.giphy.com/media/WuwgTNMyTgXAwxDeC9/giphy.gif)](https://www.loom.com/share/4cfe76a291924908af199b7a64a82c62?sid=528286e8-b273-4715-9c84-b7c968d4ae70)
 
 Hard mode:
 
-[![Hard Mode](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmcwc2tsMnk3dzcwYnZpd2VkcGdzeGswaWJ2NnV4cDg4aWpqdGRjciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hhL27X0CHiqb4siqX7/giphy.gif)](https://www.loom.com/share/23f3f863a12743d8a85436f691c12e33?sid=eb2ff35b-02bd-4548-bc90-895763ca4051)
+[![Hard Mode](https://media.giphy.com/media/WQb2za3hULhqDvW28h/giphy-downsized.gif)](https://www.loom.com/share/23f3f863a12743d8a85436f691c12e33?sid=eb2ff35b-02bd-4548-bc90-895763ca4051)
 
 
 ## Future Features
